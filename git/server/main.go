@@ -6,7 +6,9 @@ import (
 	"context"
 	"crypto/tls"
 
-	"git.sonicoriginal.software/routes/git/cgi"
+	"git.sonicoriginal.software/code-repository/api"
+	"git.sonicoriginal.software/routes/git"
+	"git.sonicoriginal.software/routes/git/repo"
 	lib "git.sonicoriginal.software/server"
 	"git.sonicoriginal.software/server/logging"
 
@@ -15,10 +17,15 @@ import (
 
 func main() {
 	fsys := memfs.New()
+	sampleRepoPath := "code-repository"
 
-	logging.DefaultLogger.Info("Starting...")
+	if err := repo.Create(fsys, sampleRepoPath); err != nil {
+		return
+	}
 
-	cgi.Register(fsys)
+	server := git.NewServer(fsys)
+	git.New(server)
+	api.New(server)
 
 	ctx, cancelFunction := context.WithCancel(context.Background())
 	exitCode, _ := lib.Run(ctx, []tls.Certificate{})
@@ -29,6 +36,4 @@ func main() {
 	}
 
 	cancelFunction()
-
-	logging.DefaultLogger.Info("Shut down")
 }
