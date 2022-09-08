@@ -25,9 +25,9 @@ func (handler *Handler) ServeHTTP(writer http.ResponseWriter, request *http.Requ
 
 // New returns a new Handler
 func New(server transport.Transport) (handler *Handler) {
-	logger := logging.New(serviceName)
-	handler = &Handler{logger, server}
 	apiPath := fmt.Sprintf("%v/%v", serviceName, apiPathName)
+	logger := logging.New(apiPath)
+	handler = &Handler{logger, server}
 	handlers.Register(serviceName, "", apiPath, handler, logger)
 
 	return

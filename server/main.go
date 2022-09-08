@@ -5,8 +5,10 @@ package main
 import (
 	"context"
 	"crypto/tls"
+	"os"
 
-	"git.sonicoriginal.software/code-repository/api"
+	"git.sonicoriginal.software/code-repository/git/api"
+	"git.sonicoriginal.software/routes/app"
 	"git.sonicoriginal.software/routes/git"
 	"git.sonicoriginal.software/routes/git/repo"
 	lib "git.sonicoriginal.software/server"
@@ -16,7 +18,10 @@ import (
 )
 
 func main() {
+	const webAppPath = "web"
+
 	fsys := memfs.New()
+	appFS := os.DirFS(webAppPath)
 	sampleRepoPath := "code-repository"
 
 	if err := repo.Create(fsys, sampleRepoPath); err != nil {
@@ -26,6 +31,7 @@ func main() {
 	server := git.NewServer(fsys)
 	git.New(server)
 	api.New(server)
+	app.New(appFS)
 
 	ctx, cancelFunction := context.WithCancel(context.Background())
 	exitCode, _ := lib.Run(ctx, []tls.Certificate{})

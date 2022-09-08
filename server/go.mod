@@ -3,6 +3,7 @@ module git.sonicoriginal.software/code-repository
 go 1.19
 
 require (
+	git.sonicoriginal.software/routes/app v0.0.0
 	git.sonicoriginal.software/routes/git v0.0.0
 	git.sonicoriginal.software/server v0.0.0
 	github.com/go-git/go-billy/v5 v5.3.1
