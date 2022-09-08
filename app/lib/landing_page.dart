@@ -14,10 +14,10 @@ class LandingPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.secondaryContainer,
+            backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
             textStyle: const TextStyle(fontSize: 20),
             padding: const EdgeInsets.all(20.0),
-            onPrimary: Theme.of(context).colorScheme.secondaryContainer,
-            primary: Theme.of(context).colorScheme.onSecondaryContainer,
             shape: const StadiumBorder(),
           ).copyWith(
             elevation: ButtonStyleButton.allOrNull(0.0),
