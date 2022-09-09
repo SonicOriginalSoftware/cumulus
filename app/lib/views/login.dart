@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'actions.dart' as app_actions;
+
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
 
@@ -87,10 +89,17 @@ class LoginSubmit extends StatelessWidget {
 
   void handlePress(BuildContext context) {
     if (loginKey.currentState!.validate()) {
+      // Navigate to the Actions page/view
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('Submitted!'),
           duration: Duration(milliseconds: duration),
+        ),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const app_actions.Actions(),
         ),
       );
     } else {
