@@ -8,7 +8,7 @@
       "name": "Site",
       "type": "dart",
       "request": "launch",
-      "program": "app/lib/main.dart"
+      "program": "app/lib/main.dart",
     },
     {
       "name": "Server",

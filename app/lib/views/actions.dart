@@ -1,4 +1,5 @@
 import 'package:code_repository/auth/token.dart';
+import 'package:code_repository/scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'actions/create.dart';
@@ -21,7 +22,7 @@ class Actions extends StatelessWidget {
       UpdateWidget(),
       DeleteWidget(),
     ];
-    return Scaffold(
+    return AppScaffold(
       body: ListView.separated(
         padding: buttonPadding,
         itemCount: buttons.length,
@@ -29,7 +30,6 @@ class Actions extends StatelessWidget {
           color: Colors.transparent,
         ),
         itemBuilder: (context, index) => buttons[index],
-        // children: buttons,
       ),
     );
   }
