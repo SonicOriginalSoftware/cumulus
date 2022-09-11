@@ -1,12 +1,7 @@
-// ignore: avoid_web_libraries_in_flutter
-
-import 'package:code_repository/auth/firebase.dart';
-import 'package:code_repository/navigator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'app.dart';
+import 'application.dart';
 
 Future<void> main() async {
   await Firebase.initializeApp(
@@ -21,8 +16,6 @@ Future<void> main() async {
     ),
   );
 
-  FirebaseAuth.instance.userChanges().listen(handleUserChange);
-  Widget app = build("Code Repository", navigatorKey);
-
+  Application app = const Application(title: "Code Repository");
   runApp(app);
 }

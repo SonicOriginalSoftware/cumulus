@@ -1,18 +1,24 @@
 import 'package:code_repository/bar.dart';
+import 'package:code_repository/body.dart';
 import 'package:code_repository/drawer.dart';
+import 'package:code_repository/keys.dart';
 import 'package:flutter/material.dart';
 
-class AppScaffold extends StatelessWidget {
-  const AppScaffold({super.key, required this.body});
+class AppScaffold extends StatefulWidget {
+  const AppScaffold({super.key});
 
-  final Widget body;
+  @override
+  State<StatefulWidget> createState() => AppScaffoldState();
+}
 
+class AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
-      drawer: drawer,
-      body: body,
+      key: scaffoldKey,
+      appBar: const Bar(),
+      drawer: const Pullout(),
+      body: const Body(),
     );
   }
 }

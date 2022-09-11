@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'with_apple.dart';
-import 'with_google.dart';
+import '../../widgets/with_apple.dart';
+import '../../widgets/with_google.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
