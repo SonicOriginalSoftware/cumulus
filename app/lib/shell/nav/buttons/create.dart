@@ -1,5 +1,5 @@
-import 'package:code_repository/nav/style.dart';
-import 'package:code_repository/shell/body.dart';
+import 'package:code_repository/shell/nav/callback.dart';
+import 'package:code_repository/shell/nav/style.dart';
 import 'package:code_repository/views/create/form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class Create extends StatelessWidget {
       builder: (context, AsyncSnapshot<User?> snapshot) {
         void Function()? callback;
         if (snapshot.data != null) {
-          callback = () => bodyController.sink.add(const CreateView());
+          callback = () => drawerPressCallback(const CreateView(), context);
         }
 
         return TextButton.icon(

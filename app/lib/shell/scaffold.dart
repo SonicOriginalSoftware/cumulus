@@ -1,6 +1,6 @@
-import 'package:code_repository/nav/drawer.dart';
 import 'package:code_repository/shell/bar.dart';
 import 'package:code_repository/shell/body.dart';
+import 'package:code_repository/shell/nav/drawer.dart';
 import 'package:flutter/material.dart';
 
 class AppScaffold extends StatefulWidget {

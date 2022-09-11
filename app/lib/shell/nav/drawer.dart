@@ -1,7 +1,7 @@
-import 'package:code_repository/nav/buttons/create.dart';
-import 'package:code_repository/nav/buttons/delete.dart';
-import 'package:code_repository/nav/buttons/home.dart';
-import 'package:code_repository/nav/buttons/update.dart';
+import 'package:code_repository/shell/nav/buttons/create.dart';
+import 'package:code_repository/shell/nav/buttons/delete.dart';
+import 'package:code_repository/shell/nav/buttons/home.dart';
+import 'package:code_repository/shell/nav/buttons/update.dart';
 import 'package:code_repository/widgets/user_display.dart';
 import 'package:flutter/material.dart';
 

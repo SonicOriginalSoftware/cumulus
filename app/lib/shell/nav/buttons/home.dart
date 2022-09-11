@@ -1,5 +1,5 @@
-import 'package:code_repository/nav/style.dart';
-import 'package:code_repository/shell/body.dart';
+import 'package:code_repository/shell/nav/callback.dart';
+import 'package:code_repository/shell/nav/style.dart';
 import 'package:code_repository/views/home/form.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
       icon: icon,
       style: navBarButtonStyle,
       // selectedIcon: selectedIcon,
-      onPressed: () => bodyController.sink.add(const HomeView()),
+      onPressed: () => drawerPressCallback(const HomeView(), context),
     );
   }
 }

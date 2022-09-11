@@ -1,15 +1,15 @@
-import 'package:code_repository/nav/style.dart';
-import 'package:code_repository/shell/body.dart';
-import 'package:code_repository/views/delete/form.dart';
+import 'package:code_repository/shell/nav/callback.dart';
+import 'package:code_repository/shell/nav/style.dart';
+import 'package:code_repository/views/update/form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Delete extends StatelessWidget {
-  const Delete({super.key});
+class Update extends StatelessWidget {
+  const Update({super.key});
 
-  static const label = "Delete";
-  static const icon = Icon(Icons.delete_outline_sharp);
-  static const selectedIcon = Icon(Icons.delete_sharp);
+  static const label = "Update";
+  static const icon = Icon(Icons.edit_outlined);
+  static const selectedIcon = Icon(Icons.edit_sharp);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class Delete extends StatelessWidget {
       builder: (context, AsyncSnapshot<User?> snapshot) {
         void Function()? callback;
         if (snapshot.data != null) {
-          callback = () => bodyController.sink.add(const DeleteView());
+          callback = () => drawerPressCallback(const UpdateView(), context);
         }
 
         return TextButton.icon(
