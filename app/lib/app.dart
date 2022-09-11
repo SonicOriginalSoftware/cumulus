@@ -1,12 +1,9 @@
 import 'package:code_repository/scaffold.dart';
 import 'package:code_repository/theme/default.dart';
+import 'package:code_repository/views/login/login.dart';
 import 'package:flutter/material.dart';
 
-import 'login/login.dart';
-
 MaterialApp build(String title, GlobalKey<NavigatorState> navigatorKey) {
-  const LoginWidget login = LoginWidget();
-
   return MaterialApp(
     debugShowCheckedModeBanner: false,
     // debugShowMaterialGrid: true,
@@ -14,6 +11,6 @@ MaterialApp build(String title, GlobalKey<NavigatorState> navigatorKey) {
     title: title,
     theme: defaultTheme,
     themeMode: ThemeMode.system,
-    home: const AppScaffold(body: login),
+    home: const AppScaffold(body: LoginView()),
   );
 }

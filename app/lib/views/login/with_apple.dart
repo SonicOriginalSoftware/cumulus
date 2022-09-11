@@ -10,10 +10,6 @@ class SignInWithAppleButton extends StatelessWidget {
       onPressed: signInWithApple,
       icon: const Icon(Icons.apple),
       label: const Text('Sign in With Apple'),
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-      ),
     );
   }
 }

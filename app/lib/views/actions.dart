@@ -1,36 +1,42 @@
-import 'package:code_repository/auth/token.dart';
-import 'package:code_repository/scaffold.dart';
 import 'package:flutter/material.dart';
 
-import 'actions/create.dart';
-import 'actions/delete.dart';
-import 'actions/update.dart';
-
-const double _buttonPadding = 40;
-const EdgeInsets buttonPadding = EdgeInsets.all(_buttonPadding);
-
 class Actions extends StatelessWidget {
-  const Actions({super.key, required this.token});
-  static double buttonInsets = 8.0;
-  static double buttonExtents = 8.0;
-  final AuthToken token;
+  const Actions({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const buttons = [
-      CreateWidget(),
-      UpdateWidget(),
-      DeleteWidget(),
-    ];
-    return AppScaffold(
-      body: ListView.separated(
-        padding: buttonPadding,
-        itemCount: buttons.length,
-        separatorBuilder: (context, index) => const Divider(
-          color: Colors.transparent,
-        ),
-        itemBuilder: (context, index) => buttons[index],
+    const buttonFontStyle = TextStyle(fontSize: 20);
+    const buttonPadding = EdgeInsets.all(24);
+    final buttonStyle = OutlinedButton.styleFrom(
+      padding: buttonPadding,
+    );
+
+    final buttons = [
+      OutlinedButton.icon(
+        onPressed: () {},
+        style: buttonStyle,
+        label: const Text("Create", style: buttonFontStyle),
+        icon: const Icon(Icons.add_circle_outline_sharp),
       ),
+      OutlinedButton.icon(
+        onPressed: () {},
+        style: buttonStyle,
+        label: const Text("Update", style: buttonFontStyle),
+        icon: const Icon(Icons.edit_sharp),
+      ),
+      OutlinedButton.icon(
+        onPressed: () {},
+        style: buttonStyle,
+        label: const Text("Delete", style: buttonFontStyle),
+        icon: const Icon(Icons.delete_sharp),
+      ),
+    ];
+    return ListView.separated(
+      padding: const EdgeInsets.only(top: 8, bottom: 8),
+      itemBuilder: (context, index) => buttons[index],
+      itemCount: buttons.length,
+      separatorBuilder: (context, index) =>
+          const Divider(color: Colors.transparent, height: 12),
     );
   }
 }

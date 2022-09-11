@@ -10,14 +10,10 @@ class SignInWithGoogleButton extends StatelessWidget {
       onPressed: signInWithGoogle,
       icon: Image.asset(
         'images/google.png',
-        width: IconTheme.of(context).size,
-        height: IconTheme.of(context).size,
+        width: IconTheme.of(context).size! - 8,
+        height: IconTheme.of(context).size! - 8,
       ),
       label: const Text("Sign in with Google"),
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-      ),
     );
   }
 }

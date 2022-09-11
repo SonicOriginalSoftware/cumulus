@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'with_apple.dart';
 import 'with_google.dart';
 
-class LoginWidget extends StatelessWidget {
-  const LoginWidget({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
   static const double _buttonPadding = 40;
   static EdgeInsets buttonPadding = const EdgeInsets.all(_buttonPadding);
   static const buttons = [SignInWithGoogleButton(), SignInWithAppleButton()];

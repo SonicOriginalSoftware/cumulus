@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'views/app.dart';
+import 'app.dart';
 
 Future<void> main() async {
   await Firebase.initializeApp(
@@ -23,5 +23,6 @@ Future<void> main() async {
 
   FirebaseAuth.instance.userChanges().listen(handleUserChange);
   Widget app = build("Code Repository", navigatorKey);
+
   runApp(app);
 }
