@@ -1,7 +1,6 @@
-import 'package:code_repository/bar.dart';
-import 'package:code_repository/body.dart';
-import 'package:code_repository/keys.dart';
 import 'package:code_repository/nav/drawer.dart';
+import 'package:code_repository/shell/bar.dart';
+import 'package:code_repository/shell/body.dart';
 import 'package:flutter/material.dart';
 
 class AppScaffold extends StatefulWidget {
@@ -14,12 +13,10 @@ class AppScaffold extends StatefulWidget {
 class AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: const Bar(),
-      drawer: const Nav(),
-      // bottomNavigationBar: const app_nav.Navigator(),
-      body: const Body(),
+    return const Scaffold(
+      appBar: Bar(),
+      drawer: Nav(),
+      body: Body(),
     );
   }
 }

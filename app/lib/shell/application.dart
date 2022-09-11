@@ -1,5 +1,4 @@
-import 'package:code_repository/keys.dart';
-import 'package:code_repository/scaffold.dart';
+import 'package:code_repository/shell/scaffold.dart';
 import 'package:code_repository/theme/dark.dart';
 import 'package:code_repository/theme/light.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,6 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
       title: title,
       theme: ThemeData.from(
         colorScheme: lightColorScheme,
