@@ -17,5 +17,6 @@ Future<void> main() async {
   );
 
   Application app = const Application(title: "Code Repository");
+
   runApp(app);
 }
