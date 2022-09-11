@@ -1,7 +1,7 @@
 import 'package:code_repository/bar.dart';
 import 'package:code_repository/body.dart';
-import 'package:code_repository/drawer.dart';
 import 'package:code_repository/keys.dart';
+import 'package:code_repository/nav/drawer.dart';
 import 'package:flutter/material.dart';
 
 class AppScaffold extends StatefulWidget {
@@ -17,7 +17,8 @@ class AppScaffoldState extends State<AppScaffold> {
     return Scaffold(
       key: scaffoldKey,
       appBar: const Bar(),
-      drawer: const Pullout(),
+      drawer: const Nav(),
+      // bottomNavigationBar: const app_nav.Navigator(),
       body: const Body(),
     );
   }
