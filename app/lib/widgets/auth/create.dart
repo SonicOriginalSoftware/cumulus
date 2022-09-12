@@ -6,15 +6,14 @@ import 'package:flutter/material.dart';
 class Create extends StatelessWidget {
   const Create({super.key});
 
-  static const label = "Create";
-  static const icon = Icon(Icons.add_circle_outline_sharp);
-  static const selectedIcon = Icon(Icons.add_circle_sharp);
+  static const icon = Icon(Icons.add_circle_sharp);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
+        final label = snapshot.data == null ? "" : "Create";
         final callback = snapshot.data == null
             ? null
             : () => bodyController.sink.add(const CreateView());

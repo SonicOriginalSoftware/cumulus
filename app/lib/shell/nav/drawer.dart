@@ -1,7 +1,5 @@
 import 'package:code_repository/shell/nav/buttons/delete.dart';
-import 'package:code_repository/shell/nav/buttons/home.dart';
 import 'package:code_repository/shell/nav/buttons/update.dart';
-import 'package:code_repository/widgets/user_display.dart';
 import 'package:flutter/material.dart';
 
 class Nav extends StatelessWidget {
@@ -20,11 +18,9 @@ class Nav extends StatelessWidget {
               ),
               margin: EdgeInsets.zero,
               padding: EdgeInsets.zero,
-              child: const UserDisplay(),
+              child: const SizedBox(),
             ),
           ),
-          const Divider(),
-          const Home(),
           const Divider(),
           const Delete(),
           const Update(),
