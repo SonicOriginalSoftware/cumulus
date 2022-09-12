@@ -1,6 +1,7 @@
-import 'package:code_repository/widgets/auth/account.dart';
-import 'package:code_repository/widgets/auth/create.dart';
-import 'package:code_repository/widgets/home.dart';
+import 'package:code_repository/shell/bar/buttons/create.dart';
+import 'package:code_repository/shell/bar/buttons/home.dart';
+import 'package:code_repository/shell/bar/widgets/account.dart';
+import 'package:code_repository/shell/bar/widgets/logout.dart';
 import 'package:flutter/material.dart';
 
 class Bar extends StatelessWidget implements PreferredSizeWidget {
@@ -15,6 +16,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
       actions: const [
         Create(),
         Account(),
+        Logout(),
         Home(),
       ],
     );

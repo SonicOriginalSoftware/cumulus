@@ -13,10 +13,10 @@ class Create extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
-        final label = snapshot.data == null ? "" : "Create";
-        final callback = snapshot.data == null
-            ? null
-            : () => bodyController.sink.add(const CreateView());
+        final hasData = snapshot.data != null;
+        final label = hasData ? "Create" : "";
+        final callback =
+            hasData ? () => bodyController.sink.add(const CreateView()) : null;
 
         return IconButton(
           icon: icon,
