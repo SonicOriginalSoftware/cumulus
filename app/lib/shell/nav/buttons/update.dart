@@ -16,10 +16,9 @@ class Update extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
-        void Function()? callback;
-        if (snapshot.data != null) {
-          callback = () => drawerPressCallback(const UpdateView(), context);
-        }
+        final callback = snapshot.data == null
+            ? null
+            : () => drawerPressCallback(const UpdateView(), context);
 
         return TextButton.icon(
           label: const Text(label),

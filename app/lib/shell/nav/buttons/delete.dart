@@ -16,10 +16,9 @@ class Delete extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
-        void Function()? callback;
-        if (snapshot.data != null) {
-          callback = () => drawerPressCallback(const DeleteView(), context);
-        }
+        final callback = snapshot.data == null
+            ? null
+            : () => drawerPressCallback(const DeleteView(), context);
 
         return TextButton.icon(
           label: const Text(label),

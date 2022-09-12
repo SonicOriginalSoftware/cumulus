@@ -1,4 +1,3 @@
-import 'package:code_repository/shell/nav/buttons/create.dart';
 import 'package:code_repository/shell/nav/buttons/delete.dart';
 import 'package:code_repository/shell/nav/buttons/home.dart';
 import 'package:code_repository/shell/nav/buttons/update.dart';
@@ -27,7 +26,6 @@ class Nav extends StatelessWidget {
           const Divider(),
           const Home(),
           const Divider(),
-          const Create(),
           const Delete(),
           const Update(),
           const Divider(),

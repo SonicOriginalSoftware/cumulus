@@ -18,7 +18,7 @@ class Application extends StatelessWidget {
         textTheme: lightTextTheme,
         useMaterial3: true,
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       darkTheme: ThemeData.from(
         colorScheme: darkColorScheme,
         textTheme: darkTextTheme,

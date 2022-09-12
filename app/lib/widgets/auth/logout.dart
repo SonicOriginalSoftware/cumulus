@@ -9,15 +9,14 @@ class LogoutButton extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
-        if (snapshot.data != null) {
-          return IconButton(
-            icon: const Icon(Icons.logout_sharp),
-            onPressed: FirebaseAuth.instance.signOut,
-            tooltip: "Log out",
-          );
-        }
+        final callback =
+            snapshot.data == null ? null : FirebaseAuth.instance.signOut;
 
-        return const SizedBox();
+        return IconButton(
+          icon: const Icon(Icons.logout_sharp),
+          onPressed: callback,
+          tooltip: "Log out",
+        );
       },
     );
   }

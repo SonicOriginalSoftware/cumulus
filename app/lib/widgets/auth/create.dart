@@ -1,5 +1,4 @@
-import 'package:code_repository/shell/nav/callback.dart';
-import 'package:code_repository/shell/nav/style.dart';
+import 'package:code_repository/shell/body.dart';
 import 'package:code_repository/views/create/form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +15,14 @@ class Create extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
-        void Function()? callback;
-        if (snapshot.data != null) {
-          callback = () => drawerPressCallback(const CreateView(), context);
-        }
+        final callback = snapshot.data == null
+            ? null
+            : () => bodyController.sink.add(const CreateView());
 
-        return TextButton.icon(
-          label: const Text(label),
+        return IconButton(
           icon: icon,
-          style: navBarButtonStyle,
-          // selectedIcon: selectedIcon,
           onPressed: callback,
+          tooltip: label,
         );
       },
     );
