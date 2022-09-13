@@ -1,5 +1,5 @@
-import 'package:code_repository/widgets/auth/with_apple.dart';
-import 'package:code_repository/widgets/auth/with_google.dart';
+import 'package:code_repository/widgets/login/buttons/with_apple.dart';
+import 'package:code_repository/widgets/login/buttons/with_google.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {

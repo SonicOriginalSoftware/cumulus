@@ -1,4 +1,4 @@
-import 'package:code_repository/views/login/form.dart';
+import 'package:code_repository/widgets/login/display.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

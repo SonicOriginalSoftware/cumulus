@@ -13,12 +13,11 @@ class Account extends StatelessWidget {
       builder: (context, AsyncSnapshot<User?> snapshot) {
         final hasData = snapshot.data != null;
         return hasData
-            ? Row(
-                children: [
-                  accountIcon,
-                  Text(snapshot.data?.displayName ?? ""),
-                ],
-              )
+            ? Center(
+                child: Text(
+                snapshot.data?.displayName ?? "",
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ))
             : const SizedBox();
       },
     );

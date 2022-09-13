@@ -25,7 +25,6 @@ class Application extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const AppScaffold(),
-      routes: const {},
     );
   }
 }

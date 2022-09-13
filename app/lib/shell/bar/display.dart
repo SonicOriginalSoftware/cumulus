@@ -13,11 +13,17 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: const [
-        Create(),
-        Account(),
+      leadingWidth: MediaQuery.of(context).size.width * 0.45,
+      leading: Flex(
+        direction: Axis.horizontal,
+        children: const [
+          Home(),
+          Create(),
+        ],
+      ),
+      actions: [
+        const Account(),
         Logout(),
-        Home(),
       ],
     );
   }
