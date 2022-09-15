@@ -2,8 +2,8 @@ import 'package:code_repository/shell/bar/display.dart';
 import 'package:code_repository/shell/body.dart';
 import 'package:flutter/material.dart';
 
-class AppScaffold extends StatelessWidget {
-  const AppScaffold({super.key});
+class Desktop extends StatelessWidget {
+  const Desktop({super.key});
 
   @override
   Widget build(BuildContext context) {

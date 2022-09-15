@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Account extends StatelessWidget {
-  const Account({super.key});
+class Name extends StatelessWidget {
+  const Name({super.key});
 
   static const accountIcon = Icon(Icons.account_box_sharp);
 

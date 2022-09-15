@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 StreamController<Widget> bodyController = StreamController<Widget>.broadcast();
+StreamController preferences = StreamController<dynamic>.broadcast();
 
 class Body extends StatefulWidget {
   const Body({super.key});
