@@ -3,7 +3,9 @@ import 'package:code_repository/views/home/form.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  const Home({super.key, this.padding});
+
+  final double? padding;
 
   static const label = "Go Home";
   static const icon = Icon(Icons.home_sharp);
@@ -14,6 +16,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: icon,
+      padding: EdgeInsets.all(padding ?? 8),
       onPressed: callback,
       tooltip: label,
     );

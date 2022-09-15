@@ -12,13 +12,16 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    double iconThemeSize = Theme.of(context).iconTheme.size ?? 24;
+    double leadingPadding = ((kToolbarHeight - iconThemeSize) / 2) + 8;
+
     return AppBar(
       leadingWidth: MediaQuery.of(context).size.width * 0.45,
       leading: Flex(
         direction: Axis.horizontal,
-        children: const [
-          Home(),
-          Create(),
+        children: [
+          Home(padding: leadingPadding),
+          Create(padding: leadingPadding),
         ],
       ),
       actions: [
