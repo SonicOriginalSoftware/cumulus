@@ -15,6 +15,8 @@ OUT_PATH := out
 SERVER_NAME := server
 SERVER_TARGET := $(OUT_PATH)/$(SERVER_NAME)
 
+BUILD_ARGS := -tags netgo -ldflags '-extldflags "-static"'
+
 define USAGE
 
   Build code-repository
@@ -28,16 +30,17 @@ help:
 
 image:
 	$(BUILD_COMMAND) \
-		-f $(DOCKER_PATH)/server.Dockerfile \
 		--tag=$(IMAGE_TAG) \
 		--progress=$(BUILD_PROGRESS) \
 		--target=$(BUILD_TARGET) \
 		--platform=$(BUILD_PLATFORM) \
+		--build-arg=SERVER_TARGET=$(SERVER_TARGET) \
+		--build-arg=SERVER_NAME=$(SERVER_NAME) \
 		.
 .PHONY: image
 
 $(SERVER_TARGET):
-	cd $(SERVER_PATH) && go build -o ../$(SERVER_TARGET)
+	cd $(SERVER_PATH) && go build $(BUILD_ARGS) -o ../$(SERVER_TARGET)
 
 server: $(SERVER_TARGET)
 .PHONY: server
