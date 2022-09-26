@@ -17,6 +17,7 @@ class Options extends StatelessWidget {
         return PopupMenuButton(
           tooltip: toolTip,
           position: PopupMenuPosition.under,
+          offset: const Offset(0, 8),
           icon: const Icon(Icons.arrow_drop_down_sharp),
           itemBuilder: (context) => <PopupMenuItem>[
             PopupMenuItem(

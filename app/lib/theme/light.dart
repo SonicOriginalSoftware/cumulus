@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+const Color transparent = Colors.transparent;
+const Color background = Colors.white;
+const Color primary = Colors.black;
+
 TextStyle lightTextStyle = const TextStyle(
-  backgroundColor: Colors.transparent,
-  color: Colors.black,
+  backgroundColor: transparent,
+  color: primary,
 );
 
 TextTheme lightTextTheme = TextTheme(
@@ -12,6 +16,13 @@ TextTheme lightTextTheme = TextTheme(
 );
 
 ColorScheme lightColorScheme = const ColorScheme.light(
-    // background: Colors.white,
-    // onBackground: Colors.black,
-    );
+  background: background,
+  onBackground: primary,
+  primary: primary,
+);
+
+ThemeData lightTheme = ThemeData(
+  colorScheme: lightColorScheme,
+  textTheme: lightTextTheme,
+  useMaterial3: true,
+);

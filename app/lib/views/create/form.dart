@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 
-class CreateView extends StatelessWidget {
+class CreateView extends StatefulWidget {
   const CreateView({super.key});
 
+  @override
+  State<CreateView> createState() => _CreateViewState();
+}
+
+class _CreateViewState extends State<CreateView> {
+  final formKey = GlobalKey<FormState>();
   static double mainAxisSpacing = 24.0;
   static double crossAxisSpacing = 0.0;
+
+  void validate() {
+    if (formKey.currentState!.validate()) {}
+  }
 
   @override
   Widget build(BuildContext context) {
     final fields = Wrap(
       direction: Axis.horizontal,
-      // runAlignment: WrapAlignment.center,
       alignment: WrapAlignment.spaceAround,
       spacing: mainAxisSpacing,
       runSpacing: crossAxisSpacing,
@@ -45,23 +54,23 @@ class CreateView extends StatelessWidget {
       ],
     );
 
-    final form = Column(
-      children: [
-        fields,
-        const Divider(
-          height: 20,
-          indent: 20,
-          endIndent: 20,
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          child: const Text("Save"),
-        )
-      ],
+    final submitButton = ElevatedButton(
+      onPressed: validate,
+      child: const Text("Save"),
     );
 
     return Form(
-      child: form,
+      child: Column(
+        children: [
+          fields,
+          const Divider(
+            height: 20,
+            indent: 20,
+            endIndent: 20,
+          ),
+          submitButton,
+        ],
+      ),
     );
   }
 }

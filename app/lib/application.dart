@@ -22,17 +22,9 @@ class Application extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: title,
-          theme: ThemeData.from(
-            colorScheme: lightColorScheme,
-            textTheme: lightTextTheme,
-            useMaterial3: true,
-          ),
-          themeMode: ThemeMode.light,
-          darkTheme: ThemeData.from(
-            colorScheme: darkColorScheme,
-            textTheme: darkTextTheme,
-            useMaterial3: true,
-          ),
+          theme: lightTheme,
+          themeMode: ThemeMode.system,
+          darkTheme: darkTheme,
           home: shell,
         );
       }),
