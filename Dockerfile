@@ -1,8 +1,5 @@
 # syntax=docker/dockerfile:1
 
-ARG SERVER_NAME
-ARG SERVER_EXECUTABLE
-
 
 FROM alpine:3 as base
 ARG APP_USER

@@ -35,7 +35,6 @@ image:
 		--target=$(BUILD_TARGET) \
 		--platform=$(BUILD_PLATFORM) \
 		--build-arg=SERVER_TARGET=$(SERVER_TARGET) \
-		--build-arg=SERVER_NAME=$(SERVER_NAME) \
 		.
 .PHONY: image
 
