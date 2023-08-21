@@ -31,14 +31,10 @@ var (
 func main() {
 	defer cancelFunction()
 
-	var serverErrorChannel chan server.Error
-	// Handle server startup
-	{
-		os.Setenv(portEnvKey, port)
+	os.Setenv(portEnvKey, port)
 
-		remoteAddress, serverErrorChannel = server.Run(ctx, &certs, testMux, portEnvKey)
-		// t.Logf("Serving on [%v]\n", remoteAddress)
-	}
+	remoteAddress, serverErrorChannel := server.Run(ctx, &certs, testMux, portEnvKey)
+	logger.DefaultLogger.Info("Serving on [%v]\n", remoteAddress)
 
 	const webAppPath = "web"
 
@@ -46,19 +42,16 @@ func main() {
 	// appFS := os.DirFS(webAppPath)
 	// sampleRepoPath := "code-repository"
 
-	// Handle server shutdown
-	{
-		serverError := <-serverErrorChannel
-		contextError := serverError.Context.Error()
-		logger.DefaultLogger.Info("Server [%v] stopped: %v", remoteAddress, contextError)
+	serverError := <-serverErrorChannel
+	contextError := serverError.Context.Error()
+	logger.DefaultLogger.Info("Server [%v] stopped: %v", remoteAddress, contextError)
 
-		if serverError.Close != nil {
-			logger.DefaultLogger.Error("Error closing server: %v", serverError.Close.Error())
-		}
+	if serverError.Close != nil {
+		logger.DefaultLogger.Error("Error closing server: %v", serverError.Close.Error())
+	}
 
-		if contextError != server.ErrContextCancelled.Error() {
-			// t.Fatalf()
-			logger.DefaultLogger.Error("Server failed unexpectedly: %v", contextError)
-		}
+	if contextError != server.ErrContextCancelled.Error() {
+		// t.Fatalf()
+		logger.DefaultLogger.Error("Server failed unexpectedly: %v", contextError)
 	}
 }
