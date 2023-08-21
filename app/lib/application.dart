@@ -15,17 +15,16 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: ((context, constraints) {
-        Widget shell = const Mobile();
-        if (constraints.maxWidth > widthBreakpoint) {
-          shell = const Desktop();
-        }
+        Widget home = constraints.maxWidth > widthBreakpoint
+            ? const Desktop()
+            : const Mobile();
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: title,
           theme: lightTheme,
-          themeMode: ThemeMode.system,
           darkTheme: darkTheme,
-          home: shell,
+          themeMode: ThemeMode.system,
+          home: home,
         );
       }),
     );

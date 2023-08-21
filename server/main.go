@@ -5,41 +5,60 @@ package main
 import (
 	"context"
 	"crypto/tls"
+	"net/http"
 	"os"
 
-	git_api "git.sonicoriginal.software/code-repository/git/api"
-	"git.sonicoriginal.software/routes/app"
-	"git.sonicoriginal.software/routes/git"
-	"git.sonicoriginal.software/routes/git/repo"
-	lib "git.sonicoriginal.software/server"
-	"git.sonicoriginal.software/server/logging"
+	logger "git.sonicoriginal.software/logger.git"
+	"git.sonicoriginal.software/server.git/v2"
 
-	"github.com/go-git/go-billy/v5/memfs"
+	"github.com/go-git/go-billy/memfs"
+	"github.com/go-git/go-git/v5/plumbing"
+)
+
+const (
+	defaultBranch = plumbing.Main
+	portEnvKey    = "TEST_PORT"
+	port          = "4430"
+)
+
+var (
+	remoteAddress       string
+	certs               []tls.Certificate
+	testMux             = http.NewServeMux()
+	ctx, cancelFunction = context.WithCancel(context.Background())
 )
 
 func main() {
+	defer cancelFunction()
+
+	var serverErrorChannel chan server.Error
+	// Handle server startup
+	{
+		os.Setenv(portEnvKey, port)
+
+		remoteAddress, serverErrorChannel = server.Run(ctx, &certs, testMux, portEnvKey)
+		// t.Logf("Serving on [%v]\n", remoteAddress)
+	}
+
 	const webAppPath = "web"
 
-	gitFS := memfs.New()
-	appFS := os.DirFS(webAppPath)
-	sampleRepoPath := "code-repository"
+	_ = memfs.New()
+	// appFS := os.DirFS(webAppPath)
+	// sampleRepoPath := "code-repository"
 
-	if err := repo.Create(gitFS, sampleRepoPath); err != nil {
-		return
+	// Handle server shutdown
+	{
+		serverError := <-serverErrorChannel
+		contextError := serverError.Context.Error()
+		logger.DefaultLogger.Info("Server [%v] stopped: %v", remoteAddress, contextError)
+
+		if serverError.Close != nil {
+			logger.DefaultLogger.Error("Error closing server: %v", serverError.Close.Error())
+		}
+
+		if contextError != server.ErrContextCancelled.Error() {
+			// t.Fatalf()
+			logger.DefaultLogger.Error("Server failed unexpectedly: %v", contextError)
+		}
 	}
-
-	server := git.NewServer(gitFS)
-	git.New(server)
-	git_api.New(server)
-	app.New(appFS)
-
-	ctx, cancelFunction := context.WithCancel(context.Background())
-	exitCode, _ := lib.Run(ctx, []tls.Certificate{})
-	defer close(exitCode)
-
-	if returnCode := <-exitCode; returnCode != 0 {
-		logging.DefaultLogger.Error("Server errored: %v", returnCode)
-	}
-
-	cancelFunction()
 }
