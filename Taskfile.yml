@@ -1,7 +1,20 @@
 version: "3"
 
+vars:
+  BUILD_ARGS: -tags netgo -ldflags '-extldflags "-static"'
+  SERVER_DIRECTORY: server
+  SERVER_TARGET: server
+
 tasks:
   default:
     silent: true
     cmds:
       - task --list-all
+
+  build:
+    desc: Build the server executable
+    dir: "{{.SERVER_DIRECTORY}}"
+    generates:
+      - ${{.SERVER_TARGET}}
+    cmds:
+      - go build {{.BUILD_ARGS}} -o {{.SERVER_TARGET}}

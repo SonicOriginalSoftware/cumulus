@@ -3,44 +3,50 @@
 package main
 
 import (
+	"os"
+
+	"git.sonicoriginal.software/code-repository.git/extensions"
+
 	"context"
 	"crypto/tls"
 	"net/http"
-	"os"
 
 	logger "git.sonicoriginal.software/logger.git"
+	app "git.sonicoriginal.software/server-routes-app.git"
+	git "git.sonicoriginal.software/server-routes-git.git"
 	"git.sonicoriginal.software/server.git/v2"
-
-	"github.com/go-git/go-billy/memfs"
-	"github.com/go-git/go-git/v5/plumbing"
 )
 
 const (
-	defaultBranch = plumbing.Main
-	portEnvKey    = "TEST_PORT"
-	port          = "4430"
+	portEnvKey = "CODE_REPOSITORY_PORT"
+	webAppPath = "web"
 )
 
 var (
 	remoteAddress       string
 	certs               []tls.Certificate
-	testMux             = http.NewServeMux()
+	mux                 = http.NewServeMux()
 	ctx, cancelFunction = context.WithCancel(context.Background())
 )
 
 func main() {
 	defer cancelFunction()
 
-	os.Setenv(portEnvKey, port)
+	gitPath, loader, err := extensions.InitializeGit()
+	if err != nil {
+		logger.DefaultLogger.Error("%v\n", err)
+	}
+	logger.DefaultLogger.Info("Git filesystem initialized at [%v]\n", gitPath)
 
-	remoteAddress, serverErrorChannel := server.Run(ctx, &certs, testMux, portEnvKey)
+	gitRoute := git.New("", loader, mux)
+	logger.DefaultLogger.Info("Handler registered for route [%v]\n", gitRoute)
+
+	appFS := os.DirFS(webAppPath)
+	appRoute := app.New(appFS, mux)
+	logger.DefaultLogger.Info("Handler registered for route [%v]\n", appRoute)
+
+	remoteAddress, serverErrorChannel := server.Run(ctx, &certs, mux, portEnvKey)
 	logger.DefaultLogger.Info("Serving on [%v]\n", remoteAddress)
-
-	const webAppPath = "web"
-
-	_ = memfs.New()
-	// appFS := os.DirFS(webAppPath)
-	// sampleRepoPath := "code-repository"
 
 	serverError := <-serverErrorChannel
 	contextError := serverError.Context.Error()
@@ -51,7 +57,6 @@ func main() {
 	}
 
 	if contextError != server.ErrContextCancelled.Error() {
-		// t.Fatalf()
 		logger.DefaultLogger.Error("Server failed unexpectedly: %v", contextError)
 	}
 }
