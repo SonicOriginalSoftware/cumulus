@@ -22,4 +22,6 @@ FROM scratch
 ARG SERVER_TARGET
 COPY --from=build-server ${SERVER_TARGET} /server
 
+VOLUME [ "/git" ]
+
 ENTRYPOINT [ "/server" ]

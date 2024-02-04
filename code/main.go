@@ -36,6 +36,14 @@ func main() {
 	if err != nil {
 		logger.DefaultLogger.Error("%v\n", err)
 	}
+	defer func(path string) {
+		logger.DefaultLogger.Info("Removing git filesystem at [%v]\n", path)
+		err := os.RemoveAll(path)
+		if err != nil {
+			logger.DefaultLogger.Error("%v\n", err)
+			os.Exit(1)
+		}
+	}(gitPath)
 	logger.DefaultLogger.Info("Git filesystem initialized at [%v]\n", gitPath)
 
 	gitRoute := git.New("", loader, mux)

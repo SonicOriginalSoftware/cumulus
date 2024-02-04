@@ -26,7 +26,6 @@ class BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-
     userChangeSubscription =
         FirebaseAuth.instance.userChanges().listen(handleUserChange);
   }
@@ -43,7 +42,13 @@ class BodyState extends State<Body> {
     return StreamBuilder(
       stream: bodyController.stream,
       builder: (context, AsyncSnapshot<Widget> snapshot) {
-        return snapshot.data ?? const HomeView();
+        if (snapshot.hasData) {
+          return snapshot.requireData;
+        } else if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        } else {
+          return const CircularProgressIndicator();
+        }
       },
     );
   }

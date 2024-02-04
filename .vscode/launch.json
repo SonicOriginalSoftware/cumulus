@@ -5,17 +5,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Site",
-      "type": "dart",
+      "name": "portal",
+      "cwd": "portal",
       "request": "launch",
-      "program": "app/lib/main.dart",
+      "type": "dart"
     },
     {
-      "name": "Server",
-      "type": "go",
+      "name": "portal (profile mode)",
+      "cwd": "portal",
       "request": "launch",
-      "mode": "auto",
-      "program": "server"
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "portal (release mode)",
+      "cwd": "portal",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
     }
   ]
 }

@@ -1,0 +1,9 @@
+services:
+  portal:
+    image: cumulus-portal
+
+  code:
+    image: cumulus-code
+
+volumes:
+  code:

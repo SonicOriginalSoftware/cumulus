@@ -7,10 +7,10 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           SignInWithAppleButton(),
           Divider(color: Colors.transparent),
           SignInWithGoogleButton(),
