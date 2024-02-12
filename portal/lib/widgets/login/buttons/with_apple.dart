@@ -1,6 +1,6 @@
-import 'package:code_repository/auth/apple/signin.dart';
-import 'package:code_repository/widgets/login/buttons/style.dart';
 import 'package:flutter/material.dart';
+import 'package:portal/auth/apple.dart';
+import 'package:portal/widgets/login/buttons/style.dart';
 
 class SignInWithAppleButton extends StatelessWidget {
   const SignInWithAppleButton({super.key});

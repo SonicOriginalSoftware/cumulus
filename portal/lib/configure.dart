@@ -4,10 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> deferredConfigure(BuildContext context) async {
-  final config =
-      await DefaultAssetBundle.of(context).loadString("config/firebase.json");
+  final config = await DefaultAssetBundle.of(context).loadString("config/firebase.json");
   final decodedConfig = jsonDecode(config);
-  final FirebaseOptions firebaseConfig = FirebaseOptions(
+
+  final FirebaseOptions firebaseOptions = FirebaseOptions(
     apiKey: decodedConfig["apiKey"] as String,
     authDomain: decodedConfig["authDomain"] as String,
     projectId: decodedConfig["projectId"] as String,
@@ -18,7 +18,7 @@ Future<dynamic> deferredConfigure(BuildContext context) async {
   );
 
   final app = await Firebase.initializeApp(
-    options: firebaseConfig,
+    options: firebaseOptions,
   );
   return app;
 }

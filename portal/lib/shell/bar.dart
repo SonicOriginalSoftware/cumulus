@@ -1,8 +1,8 @@
-import 'package:code_repository/shell/bar/buttons/create.dart';
-import 'package:code_repository/shell/bar/buttons/home.dart';
-import 'package:code_repository/shell/bar/widgets/account/name.dart';
-import 'package:code_repository/shell/bar/widgets/options.dart';
 import 'package:flutter/material.dart';
+import 'package:portal/code/repository/create.dart';
+import 'package:portal/shell/bar/account.dart';
+import 'package:portal/shell/bar/home.dart';
+import 'package:portal/widgets/options.dart';
 
 class Bar extends StatelessWidget implements PreferredSizeWidget {
   const Bar({super.key});
@@ -11,7 +11,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   static const actions = [
-    Name(),
+    Account(),
     Options(),
   ];
 
@@ -26,8 +26,8 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
     ];
     int numLeadingWidgets = leadingWidgets.length;
 
-    double leadingWidth = leadingPadding * 2 * numLeadingWidgets +
-        iconThemeSize * numLeadingWidgets;
+    double leadingWidth =
+        leadingPadding * 2 * numLeadingWidgets + iconThemeSize * numLeadingWidgets;
 
     return AppBar(
       leadingWidth: leadingWidth,

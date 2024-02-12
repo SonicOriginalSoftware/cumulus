@@ -1,6 +1,6 @@
-import 'package:code_repository/auth/google/signin.dart';
-import 'package:code_repository/widgets/login/buttons/style.dart';
 import 'package:flutter/material.dart';
+import 'package:portal/auth/google.dart';
+import 'package:portal/widgets/login/buttons/style.dart';
 
 class SignInWithGoogleButton extends StatelessWidget {
   const SignInWithGoogleButton({super.key});

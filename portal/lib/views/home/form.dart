@@ -1,6 +1,6 @@
-import 'package:code_repository/widgets/login/display.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:portal/widgets/login/display.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

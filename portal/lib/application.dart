@@ -1,29 +1,18 @@
-import 'package:code_repository/configure.dart';
-import 'package:code_repository/shell/desktop.dart';
-import 'package:code_repository/shell/mobile.dart';
-import 'package:code_repository/theme/dark.dart';
-import 'package:code_repository/theme/light.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-class DefaultBundle extends CachingAssetBundle {
-  @override
-  Future<ByteData> load(String key) async {
-    return await rootBundle.load(key);
-  }
-}
+import 'package:portal/bundle.dart';
+import 'package:portal/configure.dart';
+import 'package:portal/shell/desktop.dart';
+import 'package:portal/shell/mobile.dart';
+import 'package:portal/theme/dark.dart';
+import 'package:portal/theme/light.dart';
 
 class Application extends StatelessWidget {
-  const Application({super.key, required this.title});
-
   final String title;
-
   static const widthBreakpoint = 600;
 
+  const Application({super.key, required this.title});
+
   Widget buildConfiguredApp(BuildContext context, BoxConstraints constraints) {
-    final home = constraints.maxWidth > widthBreakpoint
-        ? const Desktop()
-        : const Mobile();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: title,
@@ -36,7 +25,7 @@ class Application extends StatelessWidget {
               future: deferredConfigure(context),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return home;
+                  return constraints.maxWidth > widthBreakpoint ? const Desktop() : const Mobile();
                 } else if (snapshot.hasError) {
                   return Center(child: Text(snapshot.error.toString()));
                 } else {

@@ -1,8 +1,8 @@
-import 'package:code_repository/shell/bar/widgets/item.dart';
-import 'package:code_repository/shell/body.dart';
-import 'package:code_repository/views/options/form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:portal/shell/body.dart';
+import 'package:portal/views/options/form.dart';
+import 'package:portal/widgets/item.dart';
 
 class Options extends StatelessWidget {
   const Options({super.key});
@@ -23,15 +23,13 @@ class Options extends StatelessWidget {
             PopupMenuItem(
               onTap: () => bodyController.sink.add(const OptionsView()),
               padding: EdgeInsets.zero,
-              child: const ListItem(
-                  title: "Preferences", icon: Icons.settings_sharp),
+              child: const ListItem(title: "Preferences", icon: Icons.settings_sharp),
             ),
             PopupMenuItem(
               onTap: FirebaseAuth.instance.signOut,
               enabled: snapshot.data != null,
               padding: EdgeInsets.zero,
-              child:
-                  const ListItem(title: "Sign out", icon: Icons.logout_sharp),
+              child: const ListItem(title: "Sign out", icon: Icons.logout_sharp),
             ),
           ],
         );

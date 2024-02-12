@@ -1,16 +1,16 @@
 # app
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
 A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# TODO
+
+- auth
+  - Using the `body` as a sink for event-driven auth handling is a _bad idea_.
+  We should be using a more global application state that would also contain
+  application preferences to manage user-credentials
+  - Until the user authentication state is populated and valid, the routing
+  for the page should fall to some `/login` path rather than populating the
+  `body` content directly

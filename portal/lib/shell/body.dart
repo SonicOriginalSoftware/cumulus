@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:code_repository/views/home/form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:portal/views/home/form.dart';
 
 StreamController<Widget> bodyController = StreamController<Widget>.broadcast();
 StreamController preferences = StreamController<dynamic>.broadcast();
@@ -26,14 +26,12 @@ class BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    userChangeSubscription =
-        FirebaseAuth.instance.userChanges().listen(handleUserChange);
+    userChangeSubscription = FirebaseAuth.instance.userChanges().listen(handleUserChange);
   }
 
   @override
   void dispose() {
     userChangeSubscription.cancel();
-
     super.dispose();
   }
 
