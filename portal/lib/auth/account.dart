@@ -1,14 +1,26 @@
+import 'dart:typed_data';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Account extends StatelessWidget {
-  const Account({super.key});
+typedef Scope = Map<String, bool>;
+
+class Account {
+  String? username;
+  String? displayName;
+  ByteData? avatar;
+
+  final Scope scopes = {};
+}
+
+class AccountView extends StatelessWidget {
+  const AccountView({super.key});
 
   static const accountIcon = Icon(Icons.account_box_sharp);
 
   @override
   Widget build(BuildContext context) {
-    final userDisplay = StreamBuilder(
+    return StreamBuilder(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
         final hasData = snapshot.data != null;
@@ -21,7 +33,5 @@ class Account extends StatelessWidget {
             : const SizedBox();
       },
     );
-
-    return userDisplay;
   }
 }

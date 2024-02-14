@@ -3,22 +3,26 @@ import 'dart:convert';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-Future<dynamic> deferredConfigure(BuildContext context) async {
-  final config = await DefaultAssetBundle.of(context).loadString("config/firebase.json");
-  final decodedConfig = jsonDecode(config);
+Future<void> loadFirebaseConfig(AssetBundle bundle) async {
+  // await Future.delayed(const Duration(seconds: 10));
+  final firebaseConfig = await bundle.loadString("config/firebase.json");
+  final decodedFirebaseConfig = jsonDecode(firebaseConfig);
 
   final FirebaseOptions firebaseOptions = FirebaseOptions(
-    apiKey: decodedConfig["apiKey"] as String,
-    authDomain: decodedConfig["authDomain"] as String,
-    projectId: decodedConfig["projectId"] as String,
-    storageBucket: decodedConfig["storageBucket"] as String,
-    messagingSenderId: decodedConfig["messagingSenderId"] as String,
-    appId: decodedConfig["appId"] as String,
-    measurementId: decodedConfig["measurementId"] as String,
+    apiKey: decodedFirebaseConfig["apiKey"] as String,
+    authDomain: decodedFirebaseConfig["authDomain"] as String,
+    projectId: decodedFirebaseConfig["projectId"] as String,
+    storageBucket: decodedFirebaseConfig["storageBucket"] as String,
+    messagingSenderId: decodedFirebaseConfig["messagingSenderId"] as String,
+    appId: decodedFirebaseConfig["appId"] as String,
+    measurementId: decodedFirebaseConfig["measurementId"] as String,
   );
 
-  final app = await Firebase.initializeApp(
-    options: firebaseOptions,
-  );
-  return app;
+  final app = await Firebase.initializeApp(options: firebaseOptions);
+  app.setAutomaticDataCollectionEnabled(false);
+}
+
+Future<void> deferredConfigure(BuildContext context) {
+  final assetBundle = DefaultAssetBundle.of(context);
+  return loadFirebaseConfig(assetBundle);
 }

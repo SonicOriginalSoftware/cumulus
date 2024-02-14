@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:portal/shell/body.dart';
-import 'package:portal/views/create/form.dart';
 
 class Create extends StatelessWidget {
   const Create({super.key, this.padding});
@@ -18,11 +16,11 @@ class Create extends StatelessWidget {
       builder: (context, AsyncSnapshot<User?> snapshot) {
         final hasData = snapshot.data != null;
         final label = hasData ? defaultLabel : "";
-        final callback = hasData ? () => bodyController.sink.add(const CreateView()) : null;
+        // final callback = hasData ? () => bodyController.sink.add(const CreateView()) : null;
 
         return IconButton(
           icon: icon,
-          onPressed: callback,
+          onPressed: () => {},
           padding: EdgeInsets.all(padding ?? 8),
           tooltip: label,
         );
