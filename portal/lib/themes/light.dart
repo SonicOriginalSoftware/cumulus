@@ -24,5 +24,4 @@ ColorScheme lightColorScheme = const ColorScheme.light(
 ThemeData lightTheme = ThemeData(
   colorScheme: lightColorScheme,
   textTheme: lightTextTheme,
-  useMaterial3: true,
 );

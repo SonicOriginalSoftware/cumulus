@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 const double iconHeight = 24, iconWidth = 24;
-const double _topPadding = 20;
-const _bottomPadding = _topPadding;
-const double _leftPadding = 20;
-const _rightPadding = _leftPadding;
+// const double _topPadding = 20;
+// const _bottomPadding = _topPadding;
+// const double _leftPadding = 20;
+// const _rightPadding = _leftPadding;
 
 ButtonStyle defaultButtonStyle = TextButton.styleFrom(
     // fixedSize: const Size(iconWidth, iconHeight),

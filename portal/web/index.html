@@ -28,13 +28,39 @@
   <script src="flutter.js" defer></script>
 </head>
 
-<body>
+<style>
+  @media (prefers-color-scheme: dark) {
+    * {
+      background: #111;
+      color: #dcb;
+    }
+  }
+</style>
+
+<body style="padding: 0; margin: 0;">
+  <div style="height: 100dvh; width: 100dvw; display: flex;justify-content: center; align-items: center;">
+    <div id="load_status"></div>
+  </div>
   <script>
     window.addEventListener('load',(ev) => {
+      var load_status=document.querySelector('#load_status')
+      load_status.textContent="Loading app..."
+
       // Download main.dart.js
-      _flutter.loader.loadEntrypoint({serviceWorker: {serviceWorkerVersion: serviceWorkerVersion,}}
-      ).then(function(engineInitializer) {return engineInitializer.initializeEngine({renderer: "html"})}
-      ).then(function(appRunner) {return appRunner.runApp()})
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {serviceWorkerVersion: serviceWorkerVersion},
+        onEntrypointLoaded: async (engineInitializer) => {
+          load_status.textContent="App loaded! Initializing engine..."
+          const appRunnerPromise=engineInitializer.initializeEngine({renderer: "html"})
+          load_status.textContent="Initializing engine..."
+          const appRunner=await appRunnerPromise
+          load_status.textContent="Engine initialized! Starting app..."
+          const appPromise=appRunner.runApp()
+          load_status.textContent="App started!"
+          await appPromise
+          load_status.textContent=""
+        }
+      })
     });
   </script>
 </body>

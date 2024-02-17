@@ -21,5 +21,4 @@ ColorScheme darkColorScheme = const ColorScheme.dark(
 ThemeData darkTheme = ThemeData(
   colorScheme: darkColorScheme,
   textTheme: darkTextTheme,
-  useMaterial3: true,
 );

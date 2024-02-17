@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> loadFirebaseConfig(AssetBundle bundle) async {
-  // await Future.delayed(const Duration(seconds: 10));
+  // await Future.delayed(const Duration(seconds: 3));
   final firebaseConfig = await bundle.loadString("config/firebase.json");
   final decodedFirebaseConfig = jsonDecode(firebaseConfig);
 
