@@ -7,7 +7,9 @@ import 'package:portal/themes/light.dart';
 
 class Application extends StatelessWidget {
   final String title;
+  // final ThemeData theme;
 
+  // const Application({super.key, required this.title, this.theme = lightTheme});
   const Application({super.key, required this.title});
 
   Widget buildBody(BuildContext context, AsyncSnapshot<void> snapshot) {
@@ -60,15 +62,25 @@ class Application extends StatelessWidget {
                     ],
                   ),
                   body: buildBody(context, snapshot),
-                  drawer: const NavigationDrawer(
+                  drawer: NavigationDrawer(
                     elevation: 5,
                     // tilePadding: EdgeInsets.symmetric(vertical: 20),
                     children: [
-                      AccountHeader(),
-                      NavigationDrawerDestination(
+                      const AccountHeader(),
+                      const NavigationDrawerDestination(
+                        icon: Icon(Icons.code),
+                        label: Text("Code"),
+                      ),
+                      const Divider(),
+                      const NavigationDrawerDestination(
                         icon: Icon(Icons.settings_sharp),
                         label: Text("Preferences"),
                       ),
+                      ChoiceChip(
+                        label: const Icon(Icons.dark_mode_sharp),
+                        selected: false,
+                        onSelected: (selected) {},
+                      )
                       // accountButton,
                       // preferencesButton,
                     ],

@@ -4,24 +4,24 @@ const Color transparent = Colors.transparent;
 const Color background = Colors.white;
 const Color primary = Colors.black;
 
-TextStyle lightTextStyle = const TextStyle(
+const TextStyle lightTextStyle = TextStyle(
   backgroundColor: transparent,
   color: primary,
 );
 
-TextTheme lightTextTheme = TextTheme(
+const TextTheme lightTextTheme = TextTheme(
   labelLarge: lightTextStyle,
   labelMedium: lightTextStyle,
   labelSmall: lightTextStyle,
 );
 
-ColorScheme lightColorScheme = const ColorScheme.light(
+const ColorScheme lightColorScheme = ColorScheme.light(
   background: background,
   onBackground: primary,
   primary: primary,
 );
 
-ThemeData lightTheme = ThemeData(
+final ThemeData lightTheme = ThemeData.from(
   colorScheme: lightColorScheme,
   textTheme: lightTextTheme,
 );

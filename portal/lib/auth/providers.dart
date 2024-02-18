@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 Future<UserCredential?> signInWithFirebaseProvider(AuthProvider provider) async {
-  // await FirebaseAuth.instance.signInWithPopup(provider);
-  await FirebaseAuth.instance.signInWithRedirect(provider);
+  await FirebaseAuth.instance.signInWithPopup(provider);
   return FirebaseAuth.instance.getRedirectResult();
 }
 

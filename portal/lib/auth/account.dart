@@ -1,19 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:portal/auth/providers.dart';
 import 'package:portal/image_placeholder.dart';
-
-typedef Scope = Map<String, bool>;
-
-class Account {
-  String? username;
-  String? displayName;
-  ByteData? avatar;
-
-  final Scope scopes = {};
-}
 
 class AccountHeader extends StatelessWidget {
   const AccountHeader({super.key});
@@ -24,35 +12,37 @@ class AccountHeader extends StatelessWidget {
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, AsyncSnapshot<User?> snapshot) {
         return UserAccountsDrawerHeader(
-          accountName: snapshot.hasData ? Text(snapshot.data!.displayName!) : null,
-          accountEmail: snapshot.hasData
-              ? Text(snapshot.data!.email!)
-              : MenuAnchor(
-                  builder: (context, controller, child) => IconButton(
-                    onPressed: controller.isOpen ? controller.close : controller.open,
-                    icon: const Icon(Icons.arrow_drop_down_sharp),
-                  ),
-                  // Replace me with List Generator that provides MenuItemButtons for the
-                  // login providers
-                  menuChildren: List.generate(
-                      providers.length,
-                      (index) => MenuItemButton(
-                            onPressed: null,
-                            child: TextButton.icon(
-                                onPressed: () =>
-                                    signInWithFirebaseProvider(providers[index].authProvider),
-                                icon: Icon(providers[index].icon),
-                                label: Text(providers[index].text)),
-                          )),
-                ),
           decoration: const FlutterLogoDecoration(),
-          currentAccountPictureSize: const Size.square(64),
+          accountName: snapshot.hasData ? Text(snapshot.data!.displayName!) : null,
+          accountEmail: MenuAnchor(
+            menuChildren: snapshot.hasData
+                ? [
+                    MenuItemButton(
+                      onPressed: FirebaseAuth.instance.signOut,
+                      child: const Text("Sign Out"),
+                    )
+                  ]
+                : List.generate(
+                    providers.length,
+                    (index) => MenuItemButton(
+                      trailingIcon: Icon(providers[index].icon),
+                      onPressed: () => signInWithFirebaseProvider(providers[index].authProvider),
+                      child: Text(providers[index].text),
+                    ),
+                  ),
+            builder: (context, controller, child) => TextButton.icon(
+              onPressed: controller.isOpen ? controller.close : controller.open,
+              label: snapshot.hasData ? Text(snapshot.data!.email!) : const Text("Sign In"),
+              icon:
+                  Icon(controller.isOpen ? Icons.arrow_drop_up_sharp : Icons.arrow_drop_down_sharp),
+            ),
+          ),
           currentAccountPicture: snapshot.hasData
               ? FadeInImage.memoryNetwork(
                   image: snapshot.data!.photoURL!,
                   placeholder: imagePlaceholder,
                 )
-              : const Icon(Icons.account_box_sharp, size: 64),
+              : const Icon(Icons.account_box_sharp, size: 72),
         );
       },
     );
