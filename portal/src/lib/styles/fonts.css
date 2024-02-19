@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Jura";
+  src: url("/res/fonts/jura.ttf");
+}
+
+@font-face {
+  font-family: "Material-Icons";
+  src: url("/res/fonts/material-icons.woff2") format("woff2");
+}
+
+.material-symbols {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Material-Icons";
+  font-weight: normal;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}

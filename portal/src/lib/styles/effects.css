@@ -1,0 +1,24 @@
+.ripple {
+  background-position: center;
+  transition: background 0.5s, color 0.75s, fill 0.5s;
+  color: inherit;
+}
+
+.ripple:hover,
+.ripple:focus {
+  background: var(--light-foreground) radial-gradient(circle, transparent 1%, var(--light-foreground) 1%) center/15000% !important;
+  color: var(--dark-text) !important;
+}
+
+.ripple:focus>svg>path,
+.ripple:hover>svg>path {
+  fill: var(--dark-text);
+}
+
+.ripple:active>svg>path,
+.ripple:active {
+  background-color: var(--light-foreground);
+  color: var(--dark-text);
+  background-size: 100%;
+  transition: background 0s;
+}

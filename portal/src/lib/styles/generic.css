@@ -1,0 +1,39 @@
+:root {
+  --section-border-color: #55555588;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.inactive {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.center-align-text {
+  text-align: center;
+}
+
+.card {
+  background-color: var(--dark-background);
+  color: var(--light-text);
+}
+
+.info-card {
+  font-size: 3vh;
+}
+
+.info-paragraph {
+  font-weight: 500;
+  line-height: 2;
+  padding: 5dvh 0;
+}

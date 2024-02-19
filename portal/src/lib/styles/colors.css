@@ -1,0 +1,15 @@
+:root {
+  --light: #f0e8ffff;
+  --dark: #1D102Eff;
+
+  --ui-primary: #5e279bff;
+  --ui-secondary: #ae78e7ff;
+  --ui-tertiary: #3f2c64ff;
+
+  --light-text: var(--light);
+  --dark-text: var(--dark);
+  --dark-foreground: var(--dark);
+  --dark-background: var(--dark);
+  --light-foreground: var(--light);
+  --light-background: var(--light);
+}
