@@ -34,5 +34,4 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  color: var(--light-text);
 }

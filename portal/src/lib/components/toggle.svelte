@@ -1,8 +1,8 @@
 <script>
-  let { toggle_id } = $props()
+  let { toggle_id, checked = $bindable() } = $props()
 </script>
 
-<input type="checkbox" id={toggle_id} />
+<input bind:checked type="checkbox" id={toggle_id} />
 
 <style>
   input {

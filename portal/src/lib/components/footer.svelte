@@ -1,5 +1,6 @@
 <script>
-  let { children } = $props()
+  /** @type {{ children: import("svelte").Snippet }}*/
+  const { children } = $props()
 </script>
 
 <footer>

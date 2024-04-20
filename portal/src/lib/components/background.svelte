@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div id="background" />
+<div id="background"></div>
 
 <style>
   #background {

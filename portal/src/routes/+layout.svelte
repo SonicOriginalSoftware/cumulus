@@ -11,6 +11,7 @@
   let { children } = $props()
 
   let drawer_toggle_id = "nav_drawer_toggle_id"
+  let drawer_shown = $state(false)
 
   /** @type {import("$lib/types.js").NavSection[]} */
   const nav_sections = []
@@ -22,14 +23,16 @@
 </svelte:head>
 
 <Background />
-<Toggle toggle_id={drawer_toggle_id} />
-<TopBar {drawer_toggle_id} />
+
+<TopBar {drawer_toggle_id} {drawer_shown} />
+<Toggle bind:checked={drawer_shown} toggle_id={drawer_toggle_id} />
+
 <div class="flex">
-  <NavigationDrawer {nav_sections}>
-    <Footer>
-      <Copyright />
-    </Footer>
-  </NavigationDrawer>
+    <NavigationDrawer {nav_sections} {drawer_shown}>
+      <Footer>
+        <Copyright />
+      </Footer>
+    </NavigationDrawer>
   <main>
     {@render children()}
   </main>

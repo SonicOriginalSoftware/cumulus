@@ -1,13 +1,17 @@
 <script>
   import { page } from "$app/stores"
 
-  let { drawer_toggle_id } = $props()
+  let { drawer_toggle_id, drawer_shown } = $props()
 </script>
 
 <header>
-  {#if drawer_toggle_id}
-    <label for={drawer_toggle_id} class="press ripple material-symbols">menu</label>
-  {/if}
+  <label for={drawer_toggle_id} class="press ripple material-symbols">
+    {#if drawer_shown}
+      close
+    {:else}
+      menu
+    {/if}
+  </label>
   <span class="inactive" id="title">{$page.data.title}</span>
   <img src="/res/icons/logo.svg" alt="logo" />
 </header>
