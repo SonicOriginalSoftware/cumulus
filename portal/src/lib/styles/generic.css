@@ -10,10 +10,6 @@
   display: inline-block;
 }
 
-.flex {
-  display: flex;
-}
-
 .inactive {
   pointer-events: none;
   opacity: 0.6;

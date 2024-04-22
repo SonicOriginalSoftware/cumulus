@@ -1,12 +1,14 @@
 <script>
-  import { slide } from "svelte/transition"
+  import { fly } from "svelte/transition"
+
+  import Copyright from "$lib/components/copyright.svelte"
 
   /** @type {{ nav_sections: import("$lib/types.js").NavSection[], children: import("svelte").Snippet }}*/
   const { drawer_shown, nav_sections = [], children } = $props()
 </script>
 
 {#if drawer_shown}
-  <aside transition:slide={{ axis: "x", duration: 2000 }}>
+  <aside transition:fly={{ opacity: 1, x: "-100%", duration: 2000 }}>
     <nav>
       <ul>
         {#each nav_sections as { section_name, routes }}
@@ -27,29 +29,43 @@
         {/each}
       </ul>
     </nav>
-    {@render children()}
+    <footer>
+      <Copyright />
+    </footer>
   </aside>
 {/if}
 
 <style>
   aside {
-    box-shadow: 10px 10px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    box-shadow: 8px 0px 20px -8px;
     /* width: 25vw; */
-    /* padding: 10px 0; */
   }
 
   nav {
+    padding: 10% 0;
     font-size: 1.5rem;
+    flex: 1;
   }
 
   nav a {
     display: block;
-    padding: 6px 0;
+    padding: 8px 0;
     text-decoration: none;
   }
 
   ul {
     list-style-type: none;
     text-align: center;
+  }
+
+  footer {
+    padding: 10% 40px 10% 40px;
+    pointer-events: none;
   }
 </style>
