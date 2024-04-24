@@ -1,23 +1,14 @@
 <script>
   import { page } from "$app/stores"
 
+  import AppBar from "$lib/components/appbar.svelte"
   import Background from "$lib/components/background.svelte"
   import NavigationDrawer from "$lib/components/nav_drawer.svelte"
-  import Toggle from "$lib/components/toggle.svelte"
-  import TopBar from "$lib/components/topbar.svelte"
+
+  import { nav_sections } from "$lib/navigation.js"
 
   let { children } = $props()
-
-  let drawer_toggle_id = "nav_drawer_toggle_id"
   let drawer_shown = $state(false)
-
-  /** @type {import("$lib/types.js").NavSection[]} */
-  const nav_sections = [
-    {
-      section_name: "",
-      routes: [{ content: "Home", href: "/", class_list: "ripple" }],
-    },
-  ]
 </script>
 
 <svelte:head>
@@ -27,14 +18,14 @@
 
 <Background />
 
-<TopBar {drawer_toggle_id} {drawer_shown} />
-<Toggle bind:checked={drawer_shown} toggle_id={drawer_toggle_id} />
-
-<div>
-  <NavigationDrawer {nav_sections} {drawer_shown}></NavigationDrawer>
-  <main>
-    {@render children()}
-  </main>
+<div id="app-layout">
+  <AppBar bind:drawer_shown />
+  <div id="app-content">
+    <NavigationDrawer {nav_sections} {drawer_shown} />
+    <main>
+      {@render children()}
+    </main>
+  </div>
 </div>
 
 <style>
@@ -46,17 +37,31 @@
   @import "$lib/styles/effects.css";
   @import "$lib/styles/generic.css";
 
-  div {
+  @media only screen and (min-width: 640px) {
+    #app-layout {
+      flex-direction: column !important;
+    }
+
+    #app-content {
+      border-top: solid;
+    }
+  }
+
+  #app-layout {
+    display: flex;
+    flex-direction: column-reverse;
+    flex: 1;
+  }
+
+  #app-content {
     position: relative;
     display: flex;
+    height: 100%;
+    border-bottom: solid;
   }
 
   main {
     width: 100%;
     position: relative;
-  }
-
-  div {
-    height: 100%;
   }
 </style>

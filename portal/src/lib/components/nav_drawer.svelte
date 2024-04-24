@@ -3,12 +3,12 @@
 
   import Copyright from "$lib/components/copyright.svelte"
 
-  /** @type {{ nav_sections: import("$lib/types.js").NavSection[], children: import("svelte").Snippet }}*/
-  const { drawer_shown, nav_sections = [], children } = $props()
+  /** @type {{ nav_sections: import("$lib/types.js").NavSection[] }}*/
+  const { drawer_shown, nav_sections = [] } = $props()
 </script>
 
 {#if drawer_shown}
-  <aside transition:fly={{ opacity: 1, x: "-100%", duration: 2000 }}>
+  <aside transition:fly={{ opacity: 1, x: "-100%", duration: 500 }}>
     <nav>
       <ul>
         {#each nav_sections as { section_name, routes }}
@@ -38,17 +38,19 @@
 <style>
   aside {
     z-index: 100;
+    background-color: var(--background);
+    color: var(--foreground);
     display: flex;
     flex-direction: column;
     position: absolute;
     left: 0;
+    bottom: 0;
     height: 100%;
-    box-shadow: 8px 0px 20px -8px;
-    /* width: 25vw; */
+    box-shadow: 8px 0px 8px -8px;
   }
 
   nav {
-    padding: 10% 0;
+    padding: 5% 0;
     font-size: 1.5rem;
     flex: 1;
   }
