@@ -43,7 +43,9 @@
     }
 
     #app-content {
-      border-top: solid;
+      border-top: solid 0.5px !important;
+      border-bottom: none !important;
+      box-shadow: 0px 8px 8px -8px inset !important;
     }
   }
 
@@ -57,7 +59,9 @@
     position: relative;
     display: flex;
     height: 100%;
-    border-bottom: solid;
+    border-top: none;
+    border-bottom: solid 0.5px;
+    box-shadow: 0px -8px 8px -8px inset;
   }
 
   main {

@@ -21,12 +21,6 @@
 </header>
 
 <style>
-  @media only screen and (min-width: 640px) {
-    header {
-      box-shadow: 0px 8px 8px -8px;
-    }
-  }
-
   header {
     z-index: 100;
     width: 100%;
@@ -34,7 +28,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--background);
-    box-shadow: 0px -8px 8px -8px;
+    overflow: hidden;
   }
 
   label {
