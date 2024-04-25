@@ -9,6 +9,7 @@ const firebaseConfig = {
   appId: firebase_client_id,
   apiKey: "AIzaSyDtFVp_J7ubZ6okryTb8bnjVHRyOw15m_s",
   // authDomain: "sos-shared.firebaseapp.com",
+  authDomain: "auth.sonicoriginal.software",
 }
 
 export const app = initializeApp(firebaseConfig)

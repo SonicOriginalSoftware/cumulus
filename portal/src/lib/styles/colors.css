@@ -15,13 +15,17 @@
 
   color-scheme: light;
   --background: var(--light-background);
-  --foreground: var(--dark-foreground)
+  --foreground: var(--dark-foreground);
+  --inverse-background: var(--dark-background);
+  --inverse-foreground: var(--light-foreground);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
     --background: var(--dark-background);
-    --foreground: var(--light-foreground)
+    --foreground: var(--light-foreground);
+    --inverse-background: var(--light-background);
+    --inverse-foreground: var(--dark-foreground)
   }
 }

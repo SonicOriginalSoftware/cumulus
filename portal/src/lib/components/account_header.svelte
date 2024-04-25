@@ -1,13 +1,25 @@
 <script>
+  import { signOut } from "firebase/auth"
+
   import { auth } from "$lib/firebase.svelte.js"
   import GithubSigninButton from "./github_signin_button.svelte"
   import GoogleSigninButton from "./google_signin_button.svelte"
 
+  /** @type {import('firebase/auth').User}*/
   let account = $state(null)
+  $inspect(account)
 
   auth.onAuthStateChanged((user) => {
     account = user
   })
+
+  async function logOut() {
+    try {
+      await signOut(auth)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 </script>
 
 <div>
@@ -15,16 +27,14 @@
     <span>Awaiting authentication initialization...</span>
   {:then}
     {#if account == null}
-      <button id="sign-in-with-google" class="ripple">
-        <GoogleSigninButton />
-        Sign in with Google
-      </button>
-      <button id="sign-in-with-github" class="ripple">
-        <GithubSigninButton />
-        Sign in with GitHub
-      </button>
+      <GoogleSigninButton {auth} {account} />
+      <GithubSigninButton />
     {:else}
-      <span>Current User: {auth.currentUser}</span>
+      <img class="icon-size" src={account.photoURL} alt="user" />
+      <span>{account.displayName}</span>
+      <span>{account.email}</span>
+      <span>{account.phoneNumber}</span>
+      <button id="sign-out" class="ripple sign-in-button" onclick={logOut}>Log Out</button>
     {/if}
   {/await}
 </div>
@@ -33,22 +43,8 @@
   div {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     background-color: var(--ui-tertiary);
-    width: 100%;
     height: 20%;
-  }
-
-  button {
-    cursor: pointer;
-    background: var(--ui-primary);
-    color: var(--foreground);
-    border-radius: 6px;
-    border: none;
-    outline: none;
-    display: flex;
-    align-items: center;
-    max-height: 20%;
-    margin: 5% 10%;
-    justify-content: center;
   }
 </style>

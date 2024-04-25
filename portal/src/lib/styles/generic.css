@@ -2,6 +2,14 @@
   --section-border-color: #55555588;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
 .block {
   display: block;
 }
@@ -13,6 +21,22 @@
 .inactive {
   pointer-events: none;
   opacity: 0.6;
+}
+
+.border-none {
+  border: none;
+}
+
+.outline-none {
+  outline: none;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
 
 .center-align-text {
@@ -32,4 +56,11 @@
   font-weight: 500;
   line-height: 2;
   padding: 5dvh 0;
+}
+
+.sign-in-button {
+  background: var(--ui-primary);
+  color: var(--light-foreground);
+  border-radius: 6px;
+  margin: 0 15%;
 }

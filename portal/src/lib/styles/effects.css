@@ -9,6 +9,10 @@
   color: var(--background) !important;
 }
 
+.ripple:hover>svg {
+  fill: var(--inverse-foreground) !important;
+}
+
 .ripple:active {
   background-color: var(--foreground) !important;
   color: var(--background) !important;
