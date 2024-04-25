@@ -17,7 +17,7 @@
     {/if}
   </label>
   <span class="inactive" id="title">{$page.data.title}</span>
-  <img src="/res/icons/logo.svg" alt="logo" />
+  <img src="/res/icons/logo.svg" alt="logo" class="icon-size" />
 </header>
 
 <style>
@@ -37,8 +37,6 @@
   }
 
   img {
-    width: var(--icon-dimension);
-    height: var(--icon-dimension);
     transition: transform 1s ease-in-out;
   }
 
