@@ -9,6 +9,8 @@
 
   let { children } = $props()
   let drawer_shown = $state(false)
+
+  // $inspect($page.data.session?.user)
 </script>
 
 <svelte:head>

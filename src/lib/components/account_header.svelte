@@ -1,18 +1,22 @@
 <script>
   import { page } from "$app/stores"
 
-  let account = $state($page.data.session?.user)
-  $inspect(account)
+  const user = $page.data.session?.user
 </script>
 
 <div>
-  <form method="POST" action="/logout">
-    <!-- <img class="icon-size" src={account.photoURL} alt="user" /> -->
-    <!-- <span>{account.displayName}</span> -->
-    <!-- <span>{account.email}</span> -->
-    <!-- <span>{account.phoneNumber}</span> -->
-    <button type="submit" class="ripple sign-in-button">Log Out</button>
-  </form>
+  {#if user === null}
+    <form method="POST" action="/login">
+      <button type="submit" class="ripple sign-in-button">Log In</button>
+    </form>
+  {:else}
+    <form method="POST" action="/logout">
+      <img crossorigin="anonymous" class="icon-size" src={user.image} alt="user" />
+      <span>{user.name}</span>
+      <span>{user.email}</span>
+      <button type="submit" class="ripple sign-in-button">Log Out</button>
+    </form>
+  {/if}
 </div>
 
 <style>
