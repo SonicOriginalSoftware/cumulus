@@ -1,0 +1,10 @@
+name = "website"
+
+compatibility_date = "2024-04-26"
+
+pages_build_output_dir = "./public"
+
+[[d1_databases]]
+binding = "db"
+database_name = "auth"
+database_id = "b612af83-cbb1-45fd-8558-c681cd1dab2c"

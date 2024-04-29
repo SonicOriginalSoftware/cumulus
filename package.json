@@ -1,0 +1,22 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"dev-x": "wrangler pages dev",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@auth/d1-adapter": "^1.0.0",
+		"@auth/sveltekit": "^1.0.1",
+		"@sveltejs/adapter-cloudflare": "^4.4.0",
+		"@sveltejs/kit": "< 3.0.0",
+		"@sveltejs/vite-plugin-svelte": "< 4.0.0",
+		"prettier": "< 4.0.0",
+		"prettier-plugin-svelte": "< 4.0.0",
+		"svelte": "^5.0.0-next.1",
+		"vite": "< 6.0.0",
+		"wrangler": "^3.52.0"
+	},
+	"type": "module"
+}

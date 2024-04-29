@@ -1,3 +1,12 @@
-**.DS_Store
-build
-out
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+/public
+.env
+.env.*
+.wrangler
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
