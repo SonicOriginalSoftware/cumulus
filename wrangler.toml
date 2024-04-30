@@ -7,3 +7,6 @@ pages_build_output_dir = ".svelte-kit/cloudflare"
 binding = "auth"
 database_name = "auth"
 database_id = "b612af83-cbb1-45fd-8558-c681cd1dab2c"
+
+[vars]
+AUTH_GOOGLE_ID = "426398616997-9p4i9av1788r79t525f7aocokm7p10qf.apps.googleusercontent.com"
