@@ -6,7 +6,7 @@ import Google from "@auth/sveltekit/providers/google"
 const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
   return {
     providers: [Google, GitHub],
-    adapter: D1Adapter(event.platform?.env.db),
+    adapter: D1Adapter(event.platform?.env.auth),
     trustHost: true,
     callbacks: {
       session: ({ newSession, session, token, user, trigger }) => {

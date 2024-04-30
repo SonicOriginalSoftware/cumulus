@@ -5,7 +5,7 @@ declare global {
 	namespace App {
 		interface Platform {
 			env: {
-				db: D1Database
+				auth: D1Database
 			}
 			context: {
 				waitUntil(promise: Promise<any>): void
