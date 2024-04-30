@@ -10,7 +10,9 @@
   let { children } = $props()
   let drawer_shown = $state(false)
 
-  // $inspect($page.data.session?.user)
+  /** @type {import("@auth/sveltekit").User}*/
+  const user = $state($page.data.user)
+  $inspect(user)
 </script>
 
 <svelte:head>
@@ -23,7 +25,7 @@
 <div id="app-layout">
   <AppBar bind:drawer_shown />
   <div id="app-content">
-    <NavigationDrawer {nav_sections} {drawer_shown} />
+    <NavigationDrawer {nav_sections} {drawer_shown} {user} />
     <main>
       {@render children()}
     </main>

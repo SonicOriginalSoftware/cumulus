@@ -4,13 +4,13 @@
   import Copyright from "$lib/components/copyright.svelte"
   import AccountHeader from "./account_header.svelte"
 
-  /** @type {{ nav_sections: import("$lib/types.js").NavSection[] }}*/
-  const { drawer_shown, nav_sections = [] } = $props()
+  /** @type {{drawer_shown: boolean, nav_sections: import("$lib/types.js").NavSection[], user: import("@auth/sveltekit").User}}*/
+  const { drawer_shown, nav_sections = [], user } = $props()
 </script>
 
 {#if drawer_shown}
   <aside transition:fly={{ opacity: 1, x: "-100%", duration: 500 }}>
-    <AccountHeader />
+    <AccountHeader {user} />
     <nav>
       <ul>
         {#each nav_sections as { section_name, routes }}

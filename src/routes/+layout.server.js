@@ -1,11 +1,19 @@
+import { building } from '$app/environment'
+
+export const prerender = false
+
+/** @type {import('./$types').LayoutServerLoad} */
 export async function load(event) {
-  const session = await event.locals.auth()
+  if (building) return {}
 
-  if (!session?.user?.id) {
-    console.error(`No session`)
+  let user
+  if (event.locals.auth) {
+    const session = await event.locals.auth()
+    if (session === null) return {}
+
+    delete session?.user?.id
+    user = session.user
   }
 
-  return {
-    session,
-  }
+  return { user }
 }

@@ -1,17 +1,16 @@
 <script>
-  import { page } from "$app/stores"
-
-  const user = $page.data.session?.user
+  /** @type {{user: import("@auth/sveltekit").User}}*/
+  const { user } = $props()
 </script>
 
 <div>
-  {#if user === null}
+  {#if user === undefined}
     <form method="POST" action="/login">
       <button type="submit" class="ripple sign-in-button">Log In</button>
     </form>
   {:else}
     <form method="POST" action="/logout">
-      <img crossorigin="anonymous" class="icon-size" src={user.image} alt="user" />
+      <img class="icon-size" src={user.image} alt="user" />
       <span>{user.name}</span>
       <span>{user.email}</span>
       <button type="submit" class="ripple sign-in-button">Log Out</button>

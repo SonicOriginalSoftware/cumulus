@@ -1,14 +1,11 @@
+import { handle as auth_handle } from '$lib/auth.js'
 import { up } from "@auth/d1-adapter"
-import { getPlatformProxy } from "wrangler"
 
 import { building } from "$app/environment"
-import { handle } from "$lib/auth.js"
 
-const platform = await getPlatformProxy()
-export const db = platform.env.db
-await migrate(db)
+let migrated = false
 
-/** @type {import('@sveltejs/kit').Handle} */
+/** @param {import("@auth/d1-adapter").D1Database} db */
 async function migrate(db) {
   console.debug(`Database initializing...`)
   let errored
@@ -21,6 +18,7 @@ async function migrate(db) {
   if (errored) {
     console.error(errored)
   } else {
+    migrated = true
     console.debug(`Database initialized!`)
   }
 }
@@ -29,5 +27,15 @@ async function migrate(db) {
 export async function handle({ event, resolve }) {
   if (building) return resolve(event)
 
-  return handle({ event, resolve })
+  if (!migrated) {
+    try {
+      await migrate(event.platform?.env.db)
+    } catch { }
+  }
+
+  if (event.url.pathname.startsWith("/auth")) {
+    return auth_handle({ event, resolve })
+  }
+
+  return resolve(event)
 }
