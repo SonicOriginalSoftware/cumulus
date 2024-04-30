@@ -1,7 +1,4 @@
-/**
- * @param {import("@cloudflare/workers-types").D1Database} db
- * @returns
- */
+/** @param {import("@cloudflare/workers-types").D1Database} db */
 export async function get_tables(db) {
   const timeout = new Promise((res) => setTimeout(() => res({ success: false, results: ["timed out"] }), 5000))
   const statement = db.prepare("PRAGMA table_list").all()

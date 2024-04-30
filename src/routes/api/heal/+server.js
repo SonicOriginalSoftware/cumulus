@@ -1,14 +1,14 @@
+import { initialize_database } from "$lib/server/initialize_database.js"
 import { get_tables } from "$lib/server/validate_auth_tables.js"
-import { up } from "@auth/d1-adapter"
 import { error } from "@sveltejs/kit"
 
 /**
  * @param {import("../../$types.js").RequestEvent} event
  */
 export async function GET(event) {
-  console.debug("Checking auth database initialization...")
   // Eventually we'll put this behind an authenticated check
 
+  console.debug("Checking auth database initialization...")
   /** @type {import("@cloudflare/workers-types").D1Database} */
   const db = event.platform?.env.auth
 
@@ -28,13 +28,16 @@ export async function GET(event) {
 
   if (tables?.length === 0) {
     console.debug("Initializing auth database...")
+    /** @type {import('@cloudflare/workers-types').D1Result<any>[]} */
+    let batched
     try {
-      await up(db)
+      batched = await initialize_database(db)
     } catch (err) {
       error(500, err)
     }
+    console.debug(batched)
+    console.debug("Auth database initialized")
   }
-  console.debug("Auth database initialized")
 
   // TODO Check table info for each expected table
 

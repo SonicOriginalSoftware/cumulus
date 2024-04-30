@@ -17,5 +17,9 @@ export async function GET(event) {
     error(500, err)
   }
 
+  if (tables?.length === 0) {
+    error(500, "Not at all tables exist")
+  }
+
   return Response.json({ status: "ok", tables })
 }
