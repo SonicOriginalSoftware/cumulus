@@ -18,6 +18,7 @@ export async function GET(event) {
   try {
     tables = await get_tables(db)
   } catch (err) {
+    // @ts-ignore
     error(500, err)
   }
   if (tables === undefined || tables === null || tables[0] === "timed out") {
@@ -33,6 +34,7 @@ export async function GET(event) {
     try {
       batched = await initialize_database(db)
     } catch (err) {
+      // @ts-ignore
       error(500, err)
     }
     console.debug(batched)

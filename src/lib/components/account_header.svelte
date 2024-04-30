@@ -4,7 +4,7 @@
 </script>
 
 <div>
-  {#if user === undefined}
+  {#if user === null}
     <form method="POST" action="/login">
       <button type="submit" class="ripple sign-in-button">Log In</button>
     </form>

@@ -14,6 +14,7 @@ export async function GET(event) {
   try {
     tables = await get_tables(db)
   } catch (err) {
+    // @ts-ignore
     error(500, err)
   }
 

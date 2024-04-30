@@ -1,4 +1,5 @@
 <script>
+  /** @type {{ toggle_id: string, checked: boolean }} */
   let { toggle_id, checked = $bindable() } = $props()
 </script>
 

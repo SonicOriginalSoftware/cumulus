@@ -4,7 +4,11 @@
   import Copyright from "$lib/components/copyright.svelte"
   import AccountHeader from "./account_header.svelte"
 
-  /** @type {{drawer_shown: boolean, nav_sections: import("$lib/types.js").NavSection[], user: import("@auth/sveltekit").User}}*/
+  /** @type {{
+   drawer_shown: boolean,
+   nav_sections: import("$lib/types.js").NavSection[],
+   user: import("@auth/sveltekit").User,
+  }} */
   const { drawer_shown, nav_sections = [], user } = $props()
 </script>
 
@@ -71,5 +75,6 @@
   footer {
     padding: 10% 40px 10% 40px;
     pointer-events: none;
+    text-align: center;
   }
 </style>
