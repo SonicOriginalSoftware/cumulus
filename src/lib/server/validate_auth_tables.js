@@ -1,9 +1,8 @@
 /** @param {import("@cloudflare/workers-types").D1Database} db */
 export async function get_tables(db) {
-  const timeout = new Promise((res) => setTimeout(() => res({ success: false, results: ["timed out"] }), 5000))
-  const statement = db.prepare("PRAGMA table_list").all()
+  const statement = db.prepare("PRAGMA table_list")
 
-  const { success, results } = await Promise.race([timeout, statement])
+  const { success, results } = await statement.all()
 
   if (!success) {
     return results
