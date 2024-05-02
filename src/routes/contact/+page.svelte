@@ -144,6 +144,7 @@
 </form>
 
 <style>
+  /* TODO: These form elements should live as a grid */
   input[type="textbox"],
   input[type="tel"],
   input[type="email"] {

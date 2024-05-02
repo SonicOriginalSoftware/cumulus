@@ -42,25 +42,3 @@
 .align-text-center {
   text-align: center;
 }
-
-.card {
-  background-color: var(--dark-background);
-  color: var(--light-text);
-}
-
-.info-card {
-  font-size: 3vh;
-}
-
-.info-paragraph {
-  font-weight: 500;
-  line-height: 2;
-  padding: 5dvh 0;
-}
-
-.sign-in-button {
-  background: var(--ui-primary);
-  color: var(--light-foreground);
-  border-radius: 6px;
-  margin: 0 15%;
-}

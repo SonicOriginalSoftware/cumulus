@@ -3,6 +3,7 @@
 
   import Toggle from "$lib/components/toggle.svelte"
 
+  /** @type {{drawer_shown: boolean}}*/
   let { drawer_shown = $bindable() } = $props()
   const drawer_toggle_id = "nav_drawer_toggle_id"
 </script>
@@ -23,12 +24,12 @@
 <style>
   header {
     z-index: 100;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--background);
-    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0px -1px 6px 1px;
   }
 
   label {

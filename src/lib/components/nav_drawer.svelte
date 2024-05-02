@@ -42,17 +42,19 @@
 {/if}
 
 <style>
+  @media only screen and (min-width: 640px) {
+    aside {
+      width: auto !important;
+    }
+  }
+
   aside {
     z-index: 100;
+    position: absolute;
+    width: 100%;
+    box-shadow: 8px 0px 8px -8px;
     background-color: var(--background);
     color: var(--foreground);
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100%;
-    box-shadow: 8px 0px 8px -8px;
   }
 
   nav {

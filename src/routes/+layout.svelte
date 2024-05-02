@@ -4,7 +4,6 @@
   import { nav_sections } from "$lib/navigation.js"
 
   import AppBar from "$lib/components/appbar.svelte"
-  import Background from "$lib/components/background.svelte"
   import NavigationDrawer from "$lib/components/nav_drawer.svelte"
 
   let { children } = $props()
@@ -20,7 +19,7 @@
   <title>{$page.data.title}</title>
 </svelte:head>
 
-<Background />
+<!-- <Background /> -->
 
 <div id="app-layout">
   <AppBar bind:drawer_shown />
@@ -41,35 +40,21 @@
   @import "$lib/styles/effects.css";
   @import "$lib/styles/generic.css";
 
-  @media only screen and (min-width: 640px) {
-    #app-layout {
-      flex-direction: column !important;
-    }
-
-    #app-content {
-      border-top: solid 0.5px !important;
-      border-bottom: none !important;
-      box-shadow: 0px 8px 8px -8px inset !important;
-    }
-  }
-
   #app-layout {
     display: flex;
-    flex-direction: column-reverse;
-    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
   }
 
   #app-content {
+    flex: 1;
     position: relative;
-    display: flex;
     height: 100%;
-    border-top: none;
-    border-bottom: solid 0.5px;
-    box-shadow: 0px -8px 8px -8px inset;
   }
 
   main {
-    width: 100%;
-    position: relative;
+    height: 100%;
+    overflow-y: scroll;
   }
 </style>
