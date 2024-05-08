@@ -10,7 +10,7 @@
 {:else}
   <form method="POST" action="/logout">
     <div id="user-info-container">
-      <img class="icon-size" src={user.image} alt="user" />
+      <img class="icon-size" src={user.image} alt="user" referrerpolicy="no-referrer" />
       <div id="user-info">
         <span>{user.name}</span>
         <span>{user.email}</span>

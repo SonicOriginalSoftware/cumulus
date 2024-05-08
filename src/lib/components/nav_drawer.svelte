@@ -1,6 +1,4 @@
 <script>
-  import { fly } from "svelte/transition"
-
   import Copyright from "$lib/components/copyright.svelte"
   import AccountHeader from "./account_header.svelte"
 
@@ -9,54 +7,42 @@
    nav_sections: import("$lib/types.js").NavSection[],
    user: import("@auth/sveltekit").User,
   }} */
-  const { drawer_shown, nav_sections = [], user } = $props()
+  let { drawer_shown = $bindable(), nav_sections = [], user } = $props()
+
+  /** @param {MouseEvent & { currentTarget: EventTarget & HTMLElement }} e */
+  async function hide_drawer(e) {
+    drawer_shown = false
+  }
 </script>
 
 {#if drawer_shown}
-  <aside transition:fly={{ opacity: 1, x: "-100%", duration: 500 }}>
-    <AccountHeader {user} />
-    <nav>
-      <ul>
-        {#each nav_sections as { section_name, routes }}
-          <span>{section_name}</span>
-          <hr />
-          {#each routes as { content, href, target, rel, class_list }}
-            <li>
-              <a {href} class={class_list} {target} {rel}>
-                {#if typeof content === "string"}
-                  {content}
-                {:else}
-                  <svelte:component this={content} />
-                {/if}
-              </a>
-            </li>
-          {/each}
-          <br />
+  <AccountHeader {user} />
+  <nav>
+    <ul>
+      {#each nav_sections as { section_name, routes }}
+        <span>{section_name}</span>
+        <hr />
+        {#each routes as { content, href, target, rel, class_list }}
+          <li>
+            <a {href} class={class_list} {target} {rel}>
+              {#if typeof content === "string"}
+                {content}
+              {:else}
+                <svelte:component this={content} />
+              {/if}
+            </a>
+          </li>
         {/each}
-      </ul>
-    </nav>
-    <footer>
-      <Copyright />
-    </footer>
-  </aside>
+        <br />
+      {/each}
+    </ul>
+  </nav>
+  <footer>
+    <Copyright />
+  </footer>
 {/if}
 
 <style>
-  @media only screen and (min-width: 640px) {
-    aside {
-      width: auto !important;
-    }
-  }
-
-  aside {
-    z-index: 100;
-    position: absolute;
-    width: 100%;
-    box-shadow: 8px 0px 8px -8px;
-    background-color: var(--background);
-    color: var(--foreground);
-  }
-
   nav {
     padding: 5% 0;
     font-size: 1.5rem;

@@ -1,30 +1,36 @@
 <script>
   import { page } from "$app/stores"
 
-  import Toggle from "$lib/components/toggle.svelte"
+  /** @type {{drawer_shown: boolean, children?: any}}*/
+  let { children, drawer_shown = $bindable() } = $props()
 
-  /** @type {{drawer_shown: boolean}}*/
-  let { drawer_shown = $bindable() } = $props()
-  const drawer_toggle_id = "nav_drawer_toggle_id"
+  const nav_drawer_toggle_label = "nav_drawer_toggle_label"
 </script>
 
-<Toggle bind:checked={drawer_shown} toggle_id={drawer_toggle_id} />
 <header>
-  <label for={drawer_toggle_id} class="press ripple material-symbols">
+  <button
+    id={nav_drawer_toggle_label}
+    class="ripple material-symbols"
+    onclick={() => (drawer_shown = !drawer_shown)}
+  >
     {#if drawer_shown}
       close
     {:else}
       menu
     {/if}
-  </label>
+  </button>
   <span class="inactive" id="title">{$page.data.section}</span>
   <img src="/res/icons/logo.svg" alt="logo" class="icon-size" />
 </header>
+{#if children}
+  {@render children()}
+{/if}
 
 <style>
   header {
     z-index: 100;
     display: flex;
+    overflow: hidden;
     justify-content: space-between;
     align-items: center;
     background-color: var(--background);
@@ -32,9 +38,13 @@
     box-shadow: 0px -1px 6px 1px;
   }
 
-  label {
+  button {
+    appearance: none;
+    border: none;
+    background-color: inherit;
     font-size: var(--icon-dimension);
     padding: 8px;
+    cursor: default;
   }
 
   img {

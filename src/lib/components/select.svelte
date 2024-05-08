@@ -1,16 +1,10 @@
 <script>
   import { slide } from "svelte/transition"
 
-  let options = [
-    { id: "reason", label: "Reason", disabled: true },
-    { id: "consult", label: "Consult" },
-    { id: "sos", label: "SOS" },
-    { id: "cumulus", label: "Cumulus" },
-    { id: "jobs", label: "Jobs", disabled: true },
-    { id: "other", label: "Other" },
-  ]
-
   let show_dropdown = $state(false)
+
+  /** @type {{ options: { id: string, label: string, disabled?: boolean }[] }} */
+  let { options } = $props()
 
   /**
    * @param {HTMLInputElement} node
@@ -36,7 +30,7 @@
           {id}
           value={id}
           type="radio"
-          name="reason"
+          name="select"
           onchange={selected}
           use:default_checked={index}
         />
@@ -53,6 +47,7 @@
   #select {
     display: flex;
     align-items: flex-start;
+    justify-content: center;
   }
 
   #dropdown-toggle-label {
