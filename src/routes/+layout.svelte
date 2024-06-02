@@ -1,17 +1,21 @@
 <script>
+  import { onNavigate } from "$app/navigation"
   import { page } from "$app/stores"
-
-  import AppBar from "$lib/components/appbar.svelte"
-  import NavigationDrawer from "$lib/components/nav_drawer.svelte"
-
-  import { nav_sections } from "$lib/navigation.js"
   import { fly } from "svelte/transition"
 
+  import AppBar from "$lib/components/appbar.svelte"
+  import NavDrawer from "$lib/components/nav_drawer.svelte"
+  import { nav_sections } from "$lib/navigation.js"
+
   let { children } = $props()
-  let drawer_shown = $state(false)
 
   /** @type {import("@auth/sveltekit").User}*/
   const user = $state($page.data.user)
+  let drawer_shown = $state(false)
+
+  onNavigate(() => {
+    drawer_shown = false
+  })
 </script>
 
 <svelte:head>
@@ -19,14 +23,13 @@
   <title>{$page.data.title}</title>
 </svelte:head>
 
-<AppBar bind:drawer_shown />
-
-{#if drawer_shown}
-  <aside transition:fly={{ opacity: 1, x: "-100%", duration: 500 }}>
-    <!-- <button onclick={hide_drawer}></button> -->
-    <NavigationDrawer bind:drawer_shown {nav_sections} {user} />
-  </aside>
-{/if}
+<AppBar bind:drawer_shown {user}>
+  {#if drawer_shown}
+    <aside transition:fly={{ opacity: 1, x: "-100%", duration: 500 }}>
+      <NavDrawer {drawer_shown} {nav_sections} {user} />
+    </aside>
+  {/if}
+</AppBar>
 
 <main>
   {@render children()}
@@ -44,25 +47,20 @@
   @media only screen and (min-width: 640px) {
     aside {
       width: auto !important;
+      height: auto !important;
     }
   }
 
   aside {
     position: absolute;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
     box-shadow: 8px 0px 8px -8px;
     background-color: var(--background);
     color: var(--foreground);
-  }
-
-  button {
-    appearance: none;
-    border: none;
-    z-index: 90;
-    /* width: 100%; */
-    /* height: 100%; */
-    background-color: red;
-    opacity: 0;
+    width: 100%;
+    overflow-y: auto;
   }
 
   main {

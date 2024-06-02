@@ -6,8 +6,6 @@ export const prerender = false
 export async function load(event) {
   if (building) return {}
 
-  console.debug("Trying to load session...")
-
   if (!event.locals.auth) {
     console.error("Session failed to load")
     return { user: null }
@@ -19,8 +17,6 @@ export async function load(event) {
     console.error(`No session found`)
     return { user: null }
   }
-
-  console.debug(`Session found: ${session.user}`)
 
   delete session.user?.id
 

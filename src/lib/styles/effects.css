@@ -1,6 +1,6 @@
 .ripple {
   background-position: center !important;
-  transition: background 0.5s, color 0.5s, fill 0.5s !important;
+  transition: background 1s, color 1s, fill 1s !important;
   color: inherit;
 }
 

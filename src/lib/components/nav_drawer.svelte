@@ -7,12 +7,7 @@
    nav_sections: import("$lib/types.js").NavSection[],
    user: import("@auth/sveltekit").User,
   }} */
-  let { drawer_shown = $bindable(), nav_sections = [], user } = $props()
-
-  /** @param {MouseEvent & { currentTarget: EventTarget & HTMLElement }} e */
-  async function hide_drawer(e) {
-    drawer_shown = false
-  }
+  let { drawer_shown, nav_sections = [], user } = $props()
 </script>
 
 {#if drawer_shown}
@@ -61,7 +56,7 @@
   }
 
   footer {
-    padding: 10% 40px 10% 40px;
+    padding: 10% 0;
     pointer-events: none;
     text-align: center;
   }

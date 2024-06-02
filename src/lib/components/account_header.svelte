@@ -33,6 +33,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     padding: 0 10px 0 0;
+    color: var(--light-foreground);
   }
 
   form {
@@ -41,7 +42,6 @@
     justify-content: space-evenly;
     align-items: center;
     height: 20%;
-    color: var(--background);
     background-color: var(--ui-tertiary);
   }
 
