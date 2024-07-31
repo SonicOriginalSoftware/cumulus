@@ -1,8 +1,17 @@
-# app
+# Cumulus
 
-# TODO
+## Components
 
-- auth
-  - Until the user authentication state is populated and valid, the routing
-  for the page should fall to some `/login` path rather than populating the
-  `body` content directly
+- Version Control System
+- Project Tracking
+- Automation
+- Wiki/Knowledge Boards
+- ...and more!
+
+## Status
+
+**WIP**
+
+This is an ambitious project and will take a long time to get off the ground.
+Even without factoring in the other extremely ambitious projects SOS has
+planned!
